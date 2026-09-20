@@ -6,8 +6,13 @@
   <title>SolarShare — Peer-to-Peer Renewable Energy Equipment Sharing</title>
   <meta name="description" content="Borrow the sun. Lend your own. Rent portable solar panels, batteries, and small wind turbines from neighbors, or earn from idle clean power gear.">
   
-  <!-- Assets: Vite bundles Bootstrap CSS + Landing CSS + Landing JS -->
-  @vite(['resources/js/front/landing.js'])
+  <!-- Google Fonts: Sora (Headings) & DM Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -1317,5 +1322,15 @@
   </footer>
   <!-- /PARTIAL: footer -->
 
+  <!-- JavaScript Module & Universal Fallback for Local Testing -->
+  <script type="module" src="assets/js/main.js"></script>
+  <script>
+    // Universal protocol fallback for file:/// where Chromium restricts ES module imports
+    if (window.location.protocol === 'file:') {
+      const fallbackScript = document.createElement('script');
+      fallbackScript.src = 'assets/js/main.js';
+      document.body.appendChild(fallbackScript);
+    }
+  </script>
 </body>
 </html>

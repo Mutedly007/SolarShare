@@ -109,13 +109,64 @@ import '../../css/front/landing.css';
     const mobileMenu = document.getElementById('ss-mobile-menu');
     const mobileLinks = document.querySelectorAll('.ss-mobile-nav-link');
 
+    let lastScrollY = Math.max(0, window.scrollY);
+    let isNavHidden = false;
+    let scrollAccumulator = 0;
+    const NAV_SCROLL_THRESHOLD = 30;
+    const TOGGLE_THRESHOLD = 10;
+
     function updateNavbarOnScroll() {
       if (!navbar) return;
-      if (window.scrollY > 40) {
-        navbar.classList.add('ss-scrolled');
-      } else {
-        navbar.classList.remove('ss-scrolled');
+      const currentScrollY = Math.max(0, window.scrollY);
+      const delta = currentScrollY - lastScrollY;
+
+      // Keep navbar visible if mobile menu is open
+      if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+        navbar.classList.remove('ss-navbar-hidden');
+        isNavHidden = false;
+        scrollAccumulator = 0;
+        lastScrollY = currentScrollY;
+        return;
       }
+
+      // At the top of the page: transparent background and naturally visible
+      if (currentScrollY <= 10) {
+        navbar.classList.remove('ss-scrolled');
+        navbar.classList.remove('ss-navbar-hidden');
+        isNavHidden = false;
+        scrollAccumulator = 0;
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Frosted glass background when scrolled past 10px so content never shows through
+      navbar.classList.add('ss-scrolled');
+
+      // Beyond threshold: hide when scrolling down, show when scrolling up
+      if (currentScrollY > NAV_SCROLL_THRESHOLD) {
+        if ((delta > 0 && scrollAccumulator < 0) || (delta < 0 && scrollAccumulator > 0)) {
+          scrollAccumulator = 0;
+        }
+        scrollAccumulator += delta;
+
+        if (scrollAccumulator > TOGGLE_THRESHOLD && !isNavHidden) {
+          // Scrolling down: navbar slides up out of view (doesn't follow)
+          navbar.classList.add('ss-navbar-hidden');
+          isNavHidden = true;
+          scrollAccumulator = 0;
+        } else if (scrollAccumulator < -TOGGLE_THRESHOLD && isNavHidden) {
+          // Scrolling back up: navbar appears with smooth animation
+          navbar.classList.remove('ss-navbar-hidden');
+          isNavHidden = false;
+          scrollAccumulator = 0;
+        }
+      } else {
+        navbar.classList.remove('ss-navbar-hidden');
+        isNavHidden = false;
+        scrollAccumulator = 0;
+      }
+
+      lastScrollY = currentScrollY;
     }
 
     let activeSectionId = '';
@@ -560,6 +611,30 @@ import '../../css/front/landing.css';
       curtainWraps.forEach(wrap => curtainObserver.observe(wrap));
     } else {
       curtainWraps.forEach(wrap => wrap.classList.add('is-revealed'));
+    }
+
+    /* ==========================================================================
+       13b. SHOWCASE CARDS STACKED-TO-SPREAD ANIMATION
+       ========================================================================== */
+    const showcaseGrid = document.querySelector('.ss-showcase-cards-grid');
+    if (showcaseGrid) {
+      if (!isReducedMotion) {
+        const spreadObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-spread');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.2,
+          rootMargin: '0px 0px -60px 0px'
+        });
+
+        spreadObserver.observe(showcaseGrid);
+      } else {
+        showcaseGrid.classList.add('is-spread');
+      }
     }
 
     /* ==========================================================================

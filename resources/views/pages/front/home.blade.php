@@ -221,7 +221,7 @@
             <div class="ss-showcase-cards-grid">
               
               <!-- Card 1 -->
-              <div class="ss-showcase-card ss-reveal ss-delay-1">
+              <div class="ss-showcase-card">
                 <div class="ss-showcase-card-icon">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 10.5h18M9 4v13M15 4v13M6 21l3-4M18 21l-3-4"/></svg>
                 </div>
@@ -230,7 +230,7 @@
               </div>
 
               <!-- Card 2 -->
-              <div class="ss-showcase-card ss-reveal ss-delay-2">
+              <div class="ss-showcase-card">
                 <div class="ss-showcase-card-icon" style="background: rgba(255, 176, 32, 0.15); color: var(--ss-sun-amber-hover);">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M8 3h8v3H8z"/><circle cx="9" cy="11" r="1.5"/><circle cx="15" cy="11" r="1.5"/><path d="M8 15h8"/></svg>
                 </div>
@@ -239,7 +239,7 @@
               </div>
 
               <!-- Card 3 -->
-              <div class="ss-showcase-card ss-reveal ss-delay-3">
+              <div class="ss-showcase-card">
                 <div class="ss-showcase-card-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--ss-success);">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v11M12 8l-6-4M12 8l6-4"/></svg>
                 </div>

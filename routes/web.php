@@ -3,5 +3,114 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $featuredEquipment = [
+        [
+            'name' => 'EcoFlow Delta 2',
+            'capacity' => '1024Wh',
+            'status' => 'Available today',
+            'status_style' => null,
+            'dot_style' => null,
+            'distance' => '1.2 miles away',
+            'rating' => '4.96',
+            'reviews' => 47,
+            'price' => 32,
+            'svg' => '<svg width="100" height="90" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="15" y="15" width="70" height="60" rx="8" fill="#1E293B"/>
+                  <rect x="25" y="26" width="50" height="18" rx="3" fill="#070F1A"/>
+                  <text x="32" y="39" fill="#10B981" font-family="\'Sora\', sans-serif" font-size="9" font-weight="700">100%</text>
+                  <circle cx="32" cy="58" r="4" fill="#475569"/>
+                  <circle cx="48" cy="58" r="4" fill="#475569"/>
+                  <rect x="62" y="54" width="12" height="8" rx="2" fill="#FFB020"/>
+                </svg>',
+        ],
+        [
+            'name' => 'SolarSaga 200W Panel',
+            'capacity' => '200W',
+            'status' => 'Available today',
+            'status_style' => null,
+            'dot_style' => null,
+            'distance' => '0.9 miles away',
+            'rating' => '4.91',
+            'reviews' => 33,
+            'price' => 18,
+            'svg' => '<svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="20" width="40" height="55" rx="4" fill="#0F5C6B" stroke="#38BDF8" stroke-width="1.5"/>
+                  <rect x="58" y="20" width="40" height="55" rx="4" fill="#0F5C6B" stroke="#38BDF8" stroke-width="1.5"/>
+                  <line x1="10" y1="47" x2="50" y2="47" stroke="#38BDF8" stroke-width="1"/>
+                  <line x1="58" y1="47" x2="98" y2="47" stroke="#38BDF8" stroke-width="1"/>
+                  <circle cx="54" cy="47" r="3" fill="#FFB020"/>
+                </svg>',
+        ],
+        [
+            'name' => 'Automaxx Wind Kit',
+            'capacity' => '400W',
+            'status' => 'Tomorrow',
+            'status_style' => 'color: var(--ss-deep-teal);',
+            'dot_style' => 'background: var(--ss-deep-teal);',
+            'distance' => '2.4 miles away',
+            'rating' => '4.88',
+            'reviews' => 18,
+            'price' => 25,
+            'svg' => '<svg width="100" height="90" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <line x1="50" y1="35" x2="50" y2="80" stroke="#64748B" stroke-width="3"/>
+                  <circle cx="50" cy="35" r="6" fill="#FFB020"/>
+                  <path d="M50 35 L50 8 L53 18 Z" fill="#0F5C6B"/>
+                  <path d="M50 35 L75 48 L65 42 Z" fill="#0F5C6B"/>
+                  <path d="M50 35 L25 48 L35 42 Z" fill="#0F5C6B"/>
+                </svg>',
+        ],
+        [
+            'name' => 'BioLite SolarHome 620+',
+            'capacity' => '33Wh/6W',
+            'status' => 'Available today',
+            'status_style' => null,
+            'dot_style' => null,
+            'distance' => '0.5 miles away',
+            'rating' => '4.98',
+            'reviews' => 62,
+            'price' => 8,
+            'svg' => '<svg width="100" height="90" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M40 25 H60 L57 38 H43 Z" fill="#334155"/>
+                  <path d="M43 38 L35 65 H65 L57 38 Z" fill="rgba(255, 176, 32, 0.3)" stroke="#FFB020" stroke-width="2"/>
+                  <circle cx="50" cy="50" r="8" fill="#FFE3C2"/>
+                  <rect x="33" y="65" width="34" height="10" rx="3" fill="#1E293B"/>
+                </svg>',
+        ],
+    ];
+
+    $stats = [
+        [
+            'target' => 12480,
+            'value' => '12,480',
+            'is_float' => false,
+            'unit' => null,
+            'label' => 'kWh Clean Energy Shared',
+        ],
+        [
+            'target' => 8.2,
+            'value' => '8.2',
+            'is_float' => true,
+            'unit' => 't',
+            'label' => 'Tons CO₂ Emissions Avoided',
+        ],
+        [
+            'target' => 3150,
+            'value' => '3,150',
+            'is_float' => false,
+            'unit' => null,
+            'label' => 'Active Neighborhood Members',
+        ],
+        [
+            'target' => 940,
+            'value' => '940',
+            'is_float' => false,
+            'unit' => null,
+            'label' => 'Pieces of Equipment Circulating',
+        ],
+    ];
+
+    return view('pages.front.home', [
+        'featuredEquipment' => $featuredEquipment,
+        'stats' => $stats,
+    ]);
+})->name('home');

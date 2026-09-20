@@ -178,7 +178,8 @@ import '../../css/front/landing.css';
       
       let activeLink = null;
       navLinks.forEach(link => {
-        if (link.getAttribute('href') === `#${id}`) {
+        const href = link.getAttribute('href') || '';
+        if (href === `#${id}` || href.endsWith(`#${id}`)) {
           activeLink = link;
         }
       });
@@ -196,7 +197,13 @@ import '../../css/front/landing.css';
 
     function repositionNavIndicator() {
       if (activeSectionId) {
-        const activeLink = document.querySelector(`.ss-nav-link[href="#${activeSectionId}"]`);
+        let activeLink = null;
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href') || '';
+          if (href === `#${activeSectionId}` || href.endsWith(`#${activeSectionId}`)) {
+            activeLink = link;
+          }
+        });
         if (activeLink && navIndicator) {
           const linkRect = activeLink.getBoundingClientRect();
           const parentRect = activeLink.closest('.ss-nav-menu').getBoundingClientRect();
@@ -658,6 +665,251 @@ import '../../css/front/landing.css';
       });
 
       processCards.forEach(card => processObserver.observe(card));
+    }
+
+    /* ==========================================================================
+       15. AUTHENTICATION: Tab Glider, Password Toggles, Strength Meter & Demo Toast
+       ========================================================================== */
+    const authSection = document.querySelector('.ss-auth-section');
+    if (authSection) {
+      const tabNav = document.querySelector('.ss-auth-tab-nav');
+      const tabBtns = document.querySelectorAll('.ss-auth-tab-btn');
+      const loginPanel = document.getElementById('ss-auth-panel-login');
+      const registerPanel = document.getElementById('ss-auth-panel-register');
+      const switchLinks = document.querySelectorAll('.ss-switch-link');
+      const toastEl = document.getElementById('ss-auth-toast');
+      const toastTitle = document.getElementById('ss-toast-title');
+      const toastDesc = document.getElementById('ss-toast-desc');
+      const toastIcon = document.getElementById('ss-toast-icon');
+      const toastClose = document.getElementById('ss-toast-close');
+      let toastTimer = null;
+
+      function showToast(title, desc, icon = '☀️') {
+        if (!toastEl) return;
+        if (toastTitle) toastTitle.textContent = title;
+        if (toastDesc) toastDesc.textContent = desc;
+        if (toastIcon) toastIcon.textContent = icon;
+        toastEl.classList.add('is-visible');
+
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('is-visible');
+        }, 5000);
+      }
+
+      if (toastClose) {
+        toastClose.addEventListener('click', () => {
+          if (toastEl) toastEl.classList.remove('is-visible');
+          if (toastTimer) clearTimeout(toastTimer);
+        });
+      }
+
+      function switchAuthTab(targetTab) {
+        if (!tabNav || !loginPanel || !registerPanel) return;
+
+        tabBtns.forEach(btn => {
+          const isTarget = btn.getAttribute('data-tab') === targetTab;
+          btn.classList.toggle('is-active', isTarget);
+          btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        });
+
+        if (targetTab === 'register') {
+          tabNav.classList.add('is-register');
+          loginPanel.classList.remove('is-active');
+          registerPanel.classList.add('is-active');
+          window.history.replaceState(null, '', '/register');
+        } else {
+          tabNav.classList.remove('is-register');
+          registerPanel.classList.remove('is-active');
+          loginPanel.classList.add('is-active');
+          window.history.replaceState(null, '', '/login');
+        }
+      }
+
+      // Initial tab detection: check URL or section data attribute
+      const initialTab = authSection.getAttribute('data-initial-tab') || 
+        (window.location.pathname.includes('register') ? 'register' : 'login');
+      if (initialTab === 'register') {
+        switchAuthTab('register');
+      }
+
+      // Tab button clicks
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.getAttribute('data-tab');
+          if (tab) switchAuthTab(tab);
+        });
+      });
+
+      // In-form switch links ("Don't have an account? Create one" / "Already have an account? Sign in")
+      switchLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const target = link.getAttribute('data-switch-to');
+          if (target) switchAuthTab(target);
+        });
+      });
+
+      // Password visibility toggles
+      const pwdToggles = document.querySelectorAll('.ss-pwd-toggle');
+      pwdToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const targetId = toggle.getAttribute('data-target');
+          const input = document.getElementById(targetId);
+          if (!input) return;
+
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+
+          const eyeShow = toggle.querySelector('.ss-eye-show');
+          const eyeHide = toggle.querySelector('.ss-eye-hide');
+
+          if (eyeShow && eyeHide) {
+            eyeShow.classList.toggle('d-none', isPassword);
+            eyeHide.classList.toggle('d-none', !isPassword);
+          }
+        });
+      });
+
+      // Password Strength Meter for Registration
+      const regPwdInput = document.getElementById('ss-register-password');
+      const meterFill = document.getElementById('ss-pwd-meter-fill');
+      const meterHint = document.getElementById('ss-pwd-meter-hint');
+
+      if (regPwdInput && meterFill && meterHint) {
+        regPwdInput.addEventListener('input', () => {
+          const val = regPwdInput.value;
+          if (!val) {
+            meterFill.style.width = '0%';
+            meterFill.style.backgroundColor = 'transparent';
+            meterHint.textContent = 'Password strength: Empty';
+            meterHint.style.color = 'var(--ss-ink-subtle)';
+            return;
+          }
+
+          let score = 0;
+          if (val.length >= 8) score++;
+          if (/[A-Z]/.test(val)) score++;
+          if (/[0-9]/.test(val)) score++;
+          if (/[^A-Za-z0-9]/.test(val)) score++;
+
+          switch (score) {
+            case 1:
+              meterFill.style.width = '25%';
+              meterFill.style.backgroundColor = '#FF6B3D';
+              meterHint.textContent = 'Password strength: Weak (try adding numbers/symbols)';
+              meterHint.style.color = '#FF6B3D';
+              break;
+            case 2:
+              meterFill.style.width = '50%';
+              meterFill.style.backgroundColor = '#FFB020';
+              meterHint.textContent = 'Password strength: Fair';
+              meterHint.style.color = '#FFB020';
+              break;
+            case 3:
+              meterFill.style.width = '75%';
+              meterFill.style.backgroundColor = '#0F5C6B';
+              meterHint.textContent = 'Password strength: Good';
+              meterHint.style.color = '#0F5C6B';
+              break;
+            case 4:
+              meterFill.style.width = '100%';
+              meterFill.style.backgroundColor = '#10B981';
+              meterHint.textContent = 'Password strength: Excellent & Secure! ✨';
+              meterHint.style.color = '#10B981';
+              break;
+            default:
+              meterFill.style.width = '15%';
+              meterFill.style.backgroundColor = '#FF6B3D';
+              meterHint.textContent = 'Password strength: Too short';
+              meterHint.style.color = '#FF6B3D';
+          }
+        });
+      }
+
+      // "Forgot Password" line click interaction
+      const forgotBtn = document.getElementById('ss-btn-forgot-password');
+      if (forgotBtn) {
+        forgotBtn.addEventListener('click', () => {
+          showToast(
+            'Password Reset Requested',
+            'Demo mode: In a live system, a secure reset link would be sent to your email.',
+            '🔑'
+          );
+        });
+      }
+
+      // Static Login Submit Simulation
+      const loginForm = document.getElementById('ss-login-form');
+      const loginBtn = document.getElementById('ss-btn-login-submit');
+      if (loginForm && loginBtn) {
+        loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const spinner = loginBtn.querySelector('.ss-btn-spinner');
+          const arrow = loginBtn.querySelector('.ss-btn-arrow');
+          const btnText = loginBtn.querySelector('.ss-btn-text');
+
+          if (spinner) spinner.classList.remove('d-none');
+          if (arrow) arrow.classList.add('d-none');
+          if (btnText) btnText.textContent = 'Signing in...';
+          loginBtn.disabled = true;
+
+          setTimeout(() => {
+            if (spinner) spinner.classList.add('d-none');
+            if (arrow) arrow.classList.remove('d-none');
+            if (btnText) btnText.textContent = 'Sign In to SolarShare';
+            loginBtn.disabled = false;
+
+            showToast(
+              'Welcome back to SolarShare!',
+              'Demo mode: Authenticated successfully. You can explore all site features.',
+              '☀️'
+            );
+          }, 650);
+        });
+      }
+
+      // Static Register Submit Simulation
+      const registerForm = document.getElementById('ss-register-form');
+      const registerBtn = document.getElementById('ss-btn-register-submit');
+      if (registerForm && registerBtn) {
+        registerForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const spinner = registerBtn.querySelector('.ss-btn-spinner');
+          const spark = registerBtn.querySelector('.ss-btn-sun-spark');
+          const btnText = registerBtn.querySelector('.ss-btn-text');
+
+          if (spinner) spinner.classList.remove('d-none');
+          if (spark) spark.classList.add('d-none');
+          if (btnText) btnText.textContent = 'Creating account...';
+          registerBtn.disabled = true;
+
+          setTimeout(() => {
+            if (spinner) spinner.classList.add('d-none');
+            if (spark) spark.classList.remove('d-none');
+            if (btnText) btnText.textContent = 'Create SolarShare Account';
+            registerBtn.disabled = false;
+
+            showToast(
+              'Account Created!',
+              'Demo mode: Welcome to the SolarShare clean energy community.',
+              '🌱'
+            );
+          }, 650);
+        });
+      }
+
+      // Social button mock clicks
+      const socialBtns = document.querySelectorAll('.ss-auth-oauth-btn');
+      socialBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const provider = btn.textContent.trim().includes('Google') ? 'Google' : 'Apple';
+          showToast(
+            `${provider} Sign-In`,
+            `Demo mode: Single sign-on with ${provider} is simulated.`,
+            '⚡'
+          );
+        });
+      });
     }
 
     // Initial trigger

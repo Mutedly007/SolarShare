@@ -114,3 +114,12 @@ Route::get('/', function () {
         'stats' => $stats,
     ]);
 })->name('home');
+
+Route::get('/login', function () {
+    return view('pages.front.auth', ['initialTab' => 'login']);
+})->name('login');
+
+Route::get('/register', function () {
+    return view('pages.front.auth', ['initialTab' => 'register']);
+})->name('register');
+

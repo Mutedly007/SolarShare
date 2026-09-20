@@ -15,11 +15,11 @@
 
       <!-- Desktop Navigation Links -->
       <ul class="ss-nav-menu" role="menubar">
-        <li role="none"><a href="#how-it-works" class="ss-nav-link" role="menuitem">How it works</a></li>
-        <li role="none"><a href="#equipment" class="ss-nav-link" role="menuitem">Equipment</a></li>
-        <li role="none"><a href="#impact" class="ss-nav-link" role="menuitem">Impact</a></li>
-        <li role="none"><a href="#community" class="ss-nav-link" role="menuitem">Community</a></li>
-        <li role="none"><a href="#faq" class="ss-nav-link" role="menuitem">FAQ</a></li>
+        <li role="none"><a href="{{ url('/#how-it-works') }}" class="ss-nav-link" role="menuitem">How it works</a></li>
+        <li role="none"><a href="{{ url('/#equipment') }}" class="ss-nav-link" role="menuitem">Equipment</a></li>
+        <li role="none"><a href="{{ url('/#impact') }}" class="ss-nav-link" role="menuitem">Impact</a></li>
+        <li role="none"><a href="{{ url('/#community') }}" class="ss-nav-link" role="menuitem">Community</a></li>
+        <li role="none"><a href="{{ url('/#faq') }}" class="ss-nav-link" role="menuitem">FAQ</a></li>
         <!-- Sun dot glider indicator -->
         <div id="ss-nav-sun-indicator" class="ss-nav-sun-indicator" aria-hidden="true"></div>
       </ul>
@@ -30,16 +30,8 @@
           <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" class="ss-btn ss-btn-ghost">Dashboard</a>
         @endauth
         @guest
-          @if (Route::has('login'))
-            <a href="{{ route('login') }}" class="ss-btn ss-btn-ghost">Log in</a>
-          @else
-            <a href="#" class="ss-btn ss-btn-ghost">Log in</a>
-          @endif
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ss-btn ss-btn-primary">Get started</a>
-          @else
-            <a href="#equipment" class="ss-btn ss-btn-primary">Get started</a>
-          @endif
+          <a href="{{ route('login') }}" class="ss-btn ss-btn-ghost">Log in</a>
+          <a href="{{ route('register') }}" class="ss-btn ss-btn-primary">Get started</a>
         @endguest
 
         <!-- Mobile Hamburger Toggle -->
@@ -56,27 +48,19 @@
   <!-- Fullscreen Mobile Menu -->
   <div id="ss-mobile-menu" class="ss-mobile-menu" aria-hidden="true">
     <ul class="ss-mobile-nav-list">
-      <li class="ss-mobile-nav-item"><a href="#how-it-works" class="ss-mobile-nav-link">How it works</a></li>
-      <li class="ss-mobile-nav-item"><a href="#equipment" class="ss-mobile-nav-link">Equipment</a></li>
-      <li class="ss-mobile-nav-item"><a href="#impact" class="ss-mobile-nav-link">Impact</a></li>
-      <li class="ss-mobile-nav-item"><a href="#community" class="ss-mobile-nav-link">Community</a></li>
-      <li class="ss-mobile-nav-item"><a href="#faq" class="ss-mobile-nav-link">FAQ</a></li>
+      <li class="ss-mobile-nav-item"><a href="{{ url('/#how-it-works') }}" class="ss-mobile-nav-link">How it works</a></li>
+      <li class="ss-mobile-nav-item"><a href="{{ url('/#equipment') }}" class="ss-mobile-nav-link">Equipment</a></li>
+      <li class="ss-mobile-nav-item"><a href="{{ url('/#impact') }}" class="ss-mobile-nav-link">Impact</a></li>
+      <li class="ss-mobile-nav-item"><a href="{{ url('/#community') }}" class="ss-mobile-nav-link">Community</a></li>
+      <li class="ss-mobile-nav-item"><a href="{{ url('/#faq') }}" class="ss-mobile-nav-link">FAQ</a></li>
     </ul>
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       @auth
         <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" class="ss-btn ss-btn-primary w-100 ss-mobile-nav-link">Dashboard</a>
       @endauth
       @guest
-        @if (Route::has('login'))
-          <a href="{{ route('login') }}" class="ss-btn ss-btn-secondary w-100 ss-mobile-nav-link">Log in</a>
-        @else
-          <a href="#" class="ss-btn ss-btn-secondary w-100 ss-mobile-nav-link">Log in</a>
-        @endif
-        @if (Route::has('register'))
-          <a href="{{ route('register') }}" class="ss-btn ss-btn-primary w-100 ss-mobile-nav-link">Get started</a>
-        @else
-          <a href="#equipment" class="ss-btn ss-btn-primary w-100 ss-mobile-nav-link">Get started</a>
-        @endif
+        <a href="{{ route('login') }}" class="ss-btn ss-btn-secondary w-100 ss-mobile-nav-link">Log in</a>
+        <a href="{{ route('register') }}" class="ss-btn ss-btn-primary w-100 ss-mobile-nav-link">Get started</a>
       @endguest
     </div>
   </div>

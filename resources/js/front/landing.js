@@ -33,11 +33,11 @@ import '../../css/front/landing.css';
       if (!isReducedMotion && narratorSun) {
         const winW = window.innerWidth;
         const winH = window.innerHeight;
-        
+
         const sunX = 30 + progress * (winW - 120);
         const arcHeight = Math.min(winH * 0.45, 300);
         const sunY = (1 - Math.sin(progress * Math.PI)) * arcHeight + 35;
-        
+
         narratorSun.style.transform = `translate3d(${sunX}px, ${sunY}px, 0)`;
 
         if (progress < 0.28) {
@@ -171,11 +171,11 @@ import '../../css/front/landing.css';
 
     let activeSectionId = '';
     const sections = document.querySelectorAll('section[id]');
-    
+
     function updateActiveNavLink(id) {
       if (!id || activeSectionId === id) return;
       activeSectionId = id;
-      
+
       let activeLink = null;
       navLinks.forEach(link => {
         const href = link.getAttribute('href') || '';
@@ -281,7 +281,7 @@ import '../../css/front/landing.css';
         const mouseY = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const deltaX = (mouseX - centerX) / centerX;
         const tiltAngle = Math.max(-20, Math.min(20, deltaX * 20));
         panelGroup.style.transform = `rotate(${tiltAngle}deg)`;
@@ -346,7 +346,7 @@ import '../../css/front/landing.css';
           const y = e.clientY - rect.top;
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
-          
+
           const rotateX = ((centerY - y) / centerY) * 4.5;
           const rotateY = ((x - centerX) / centerX) * 4.5;
 
@@ -727,7 +727,7 @@ import '../../css/front/landing.css';
       }
 
       // Initial tab detection: check URL or section data attribute
-      const initialTab = authSection.getAttribute('data-initial-tab') || 
+      const initialTab = authSection.getAttribute('data-initial-tab') ||
         (window.location.pathname.includes('register') ? 'register' : 'login');
       if (initialTab === 'register') {
         switchAuthTab('register');
@@ -902,7 +902,7 @@ import '../../css/front/landing.css';
       const socialBtns = document.querySelectorAll('.ss-auth-oauth-btn');
       socialBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          const provider = btn.textContent.trim().includes('Google') ? 'Google' : 'Apple';
+          const provider = btn.textContent.trim().includes('Google') ? 'Google' : 'GitHub';
           showToast(
             `${provider} Sign-In`,
             `Demo mode: Single sign-on with ${provider} is simulated.`,

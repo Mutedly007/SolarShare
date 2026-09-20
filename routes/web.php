@@ -116,10 +116,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/login', function () {
-    return view('pages.front.auth', ['initialTab' => 'login']);
+    return view('pages.front.Auth.auth', ['initialTab' => 'login']);
 })->name('login');
 
 Route::get('/register', function () {
-    return view('pages.front.auth', ['initialTab' => 'register']);
+    return view('pages.front.Auth.auth', ['initialTab' => 'register']);
 })->name('register');
 

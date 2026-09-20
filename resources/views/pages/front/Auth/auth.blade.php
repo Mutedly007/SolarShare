@@ -31,8 +31,8 @@
     <div class="ss-auth-card">
 
       <!-- Left Column: Visual Brand & Community Value Showcase -->
-      <div class="ss-auth-showcase">
-        <div class="ss-auth-showcase-content">
+      <div class="ss-auth-showcase" style="display:flex; align-items:center; justify-content:center;">
+        <div class="ss-auth-showcase-content" style="text-align:left;">
           
           <div class="ss-auth-badge">
             <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -57,61 +57,6 @@
           <p class="ss-auth-showcase-desc">
             Connect with verified neighbors to rent high-capacity power stations and solar gear on demand, or earn passive income from your idle clean energy setup.
           </p>
-
-          <!-- Key Benefit Points -->
-          <div class="ss-auth-perks">
-            <div class="ss-auth-perk-item">
-              <div class="ss-auth-perk-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <div class="ss-auth-perk-text">
-                <strong>940+ Clean Power Units</strong>
-                <span>EcoFlow, Jackery, GoalZero & more ready today</span>
-              </div>
-            </div>
-
-            <div class="ss-auth-perk-item">
-              <div class="ss-auth-perk-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              </div>
-              <div class="ss-auth-perk-text">
-                <strong>$10,000 Gear Guarantee</strong>
-                <span>Every transaction covered with peer insurance</span>
-              </div>
-            </div>
-
-            <div class="ss-auth-perk-item">
-              <div class="ss-auth-perk-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="ss-auth-perk-text">
-                <strong>Local Neighborhood Pickups</strong>
-                <span>Average distance just 1.1 miles from your doorstep</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mini Community Testimonial Card -->
-          <div class="ss-auth-mini-quote">
-            <div class="ss-auth-quote-stars">★★★★★</div>
-            <p class="ss-auth-quote-text">
-              “Renting out my solar generator when not on road trips made me $420 this summer while helping neighbors stay powered.”
-            </p>
-            <div class="ss-auth-quote-author">
-              <div class="ss-auth-avatar">JR</div>
-              <div>
-                <strong>Jordan R.</strong>
-                <span>SolarShare Lender • Boulder, CO</span>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -171,11 +116,11 @@
               </svg>
               <span>Google</span>
             </button>
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign in with Apple">
+            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign in with GitHub">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.89c.66-.82 1.11-1.95.99-3.09-.95.04-2.11.64-2.79 1.45-.6.7-1.13 1.84-.99 2.96 1.06.08 2.14-.54 2.79-1.32z"/>
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
               </svg>
-              <span>Apple</span>
+              <span>GitHub</span>
             </button>
           </div>
 
@@ -307,11 +252,11 @@
               </svg>
               <span>Google</span>
             </button>
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign up with Apple">
+            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign up with GitHub">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.89c.66-.82 1.11-1.95.99-3.09-.95.04-2.11.64-2.79 1.45-.6.7-1.13 1.84-.99 2.96 1.06.08 2.14-.54 2.79-1.32z"/>
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
               </svg>
-              <span>Apple</span>
+              <span>GitHub</span>
             </button>
           </div>
 
@@ -382,13 +327,6 @@
                   <span class="ss-role-btn">
                     <span class="ss-role-icon">☀️</span>
                     <span>Lend & earn</span>
-                  </span>
-                </label>
-                <label class="ss-role-pill">
-                  <input type="radio" name="solar_role" value="both">
-                  <span class="ss-role-btn">
-                    <span class="ss-role-icon">🤝</span>
-                    <span>Both</span>
                   </span>
                 </label>
               </div>

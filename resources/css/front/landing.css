@@ -1071,6 +1071,7 @@ section[id] {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
 
@@ -1232,6 +1233,11 @@ section[id] {
   text-align: center;
   box-shadow: var(--ss-shadow-sm);
   margin-bottom: 1.5rem;
+  height: calc(100% - 1.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: transform var(--ss-dur-normal) var(--ss-ease-spring),
               box-shadow var(--ss-dur-normal) var(--ss-ease-spring);
 }
@@ -1996,6 +2002,12 @@ section[id] {
   flex-direction: column;
   gap: 1.1rem;
   justify-content: center;
+}
+
+.ss-glass-card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .ss-glass-equipment-card {

@@ -685,37 +685,7 @@
 
             <div class="col-lg-6 col-md-12">
               <div class="ss-p2p-scene">
-                <!-- Inline SVG Peer-to-Peer Neighborhood Scene -->
-                <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-100" aria-label="Two neighborhood houses connected by sharing power line">
-                  <line x1="20" y1="230" x2="420" y2="230" stroke="rgba(16,32,43,0.1)" stroke-width="2"/>
-                  
-                  <!-- House A (Lender) -->
-                  <g transform="translate(40, 90)">
-                    <rect x="0" y="45" width="110" height="95" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-                    <polygon points="55,0 -10,48 120,48" fill="#0F5C6B"/>
-                    <rect x="15" y="15" width="35" height="22" rx="2" fill="#38BDF8" opacity="0.8"/>
-                    <rect x="60" y="15" width="35" height="22" rx="2" fill="#38BDF8" opacity="0.8"/>
-                    <rect x="42" y="90" width="26" height="50" rx="3" fill="#FFB020"/>
-                    <rect x="15" y="60" width="22" height="22" rx="2" fill="#CDEBF5"/>
-                    <rect x="73" y="60" width="22" height="22" rx="2" fill="#CDEBF5"/>
-                  </g>
-
-                  <!-- House B (Renter) -->
-                  <g transform="translate(290, 105)">
-                    <rect x="0" y="40" width="105" height="85" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-                    <polygon points="52,0 -8,42 112,42" fill="#1E293B"/>
-                    <rect x="40" y="75" width="25" height="50" rx="3" fill="#143447"/>
-                    <rect x="14" y="55" width="20" height="20" rx="2" fill="#FFE3C2"/>
-                    <rect x="71" y="55" width="20" height="20" rx="2" fill="#FFE3C2"/>
-                  </g>
-
-                  <!-- Animated Glowing Peer-to-Peer Energy Conduit -->
-                  <path d="M 150 170 C 200 120, 240 120, 290 170" stroke="#FFB020" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10">
-                    <animate attributeName="stroke-dashoffset" values="36; 0" dur="1.5s" repeatCount="indefinite"/>
-                  </path>
-                  <circle cx="220" cy="138" r="14" fill="#FFB020" opacity="0.2"/>
-                  <circle cx="220" cy="138" r="7" fill="#FFB020"/>
-                </svg>
+                <img src="{{ asset('assets/images/rent-scene.jpg') }}" alt="Person receiving portable solar gear at a campsite" loading="lazy" style="width: 100%; border-radius: 20px; object-fit: cover;">
               </div>
             </div>
 
@@ -766,24 +736,7 @@
 
             <div class="col-lg-6 col-md-12">
               <div class="ss-p2p-scene">
-                <!-- Peer-to-peer Lender Illustration -->
-                <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-100" aria-label="Lender dashboard graphic showing earnings and security guarantee">
-                  <rect x="60" y="30" width="320" height="200" rx="16" fill="#10202B" stroke="#334155" stroke-width="2"/>
-                  <rect x="85" y="55" width="130" height="70" rx="10" fill="#1E293B"/>
-                  <text x="100" y="80" fill="#94A3B8" font-family="'DM Sans', sans-serif" font-size="12">September Payout</text>
-                  <text x="100" y="110" fill="#FFB020" font-family="'Sora', sans-serif" font-size="24" font-weight="800">$480.00</text>
-                  
-                  <rect x="230" y="55" width="125" height="70" rx="10" fill="#1E293B"/>
-                  <text x="245" y="80" fill="#94A3B8" font-family="'DM Sans', sans-serif" font-size="12">Completed Trips</text>
-                  <text x="245" y="110" fill="#10B981" font-family="'Sora', sans-serif" font-size="24" font-weight="800">14</text>
-                  
-                  <!-- Protection Badge -->
-                  <rect x="85" y="145" width="270" height="55" rx="8" fill="rgba(16, 185, 129, 0.12)" stroke="#10B981" stroke-width="1.5"/>
-                  <circle cx="115" cy="172" r="14" fill="#10B981"/>
-                  <path d="M109 172 l4 4 l8 -8" stroke="#FFFFFF" stroke-width="2" fill="none"/>
-                  <text x="140" y="168" fill="#FFFFFF" font-family="'Sora', sans-serif" font-size="12" font-weight="700">SolarShield Host Guarantee</text>
-                  <text x="140" y="184" fill="#94A3B8" font-family="'DM Sans', sans-serif" font-size="10">Up to $3,000 protection per booking</text>
-                </svg>
+                <img src="{{ asset('assets/images/lend-scene.jpg') }}" alt="Person showcasing solar equipment collection in garage" loading="lazy" style="width: 100%; border-radius: 20px; object-fit: cover;">
               </div>
             </div>
 

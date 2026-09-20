@@ -128,9 +128,16 @@
             <span>or sign in with email</span>
           </div>
 
-          <!-- Static Login Form -->
-          <form class="ss-auth-form" id="ss-login-form" onsubmit="return false;">
-            
+          @if ($errors->any())
+            <div class="ss-form-error-banner" style="background:#FFF1F0; border:1px solid #FF6B3D; color:#C2410C; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:1.25rem;">
+              {{ $errors->first() }}
+            </div>
+          @endif
+
+          <!-- Login Form -->
+          <form class="ss-auth-form" id="ss-login-form" method="POST" action="{{ route('login.attempt') }}">
+            @csrf
+
             <!-- Email Input -->
             <div class="ss-form-group">
               <label for="ss-login-email" class="ss-form-label">Email address</label>
@@ -145,6 +152,7 @@
                   type="email" 
                   id="ss-login-email" 
                   name="email" 
+                  value="{{ old('email') }}"
                   class="ss-form-input" 
                   placeholder="name@example.com" 
                   autocomplete="email"
@@ -194,7 +202,7 @@
             <!-- Remember Me Row -->
             <div class="ss-form-options">
               <label class="ss-checkbox-label">
-                <input type="checkbox" id="ss-remember-me" name="remember" class="ss-checkbox-input">
+                <input type="checkbox" id="ss-remember-me" name="remember" value="1" class="ss-checkbox-input">
                 <span class="ss-checkbox-custom">
                   <svg width="12" height="10" viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polyline points="1.5 5 4.5 8 10.5 2"></polyline>
@@ -264,8 +272,9 @@
             <span>or continue with email</span>
           </div>
 
-          <!-- Static Sign Up Form -->
-          <form class="ss-auth-form" id="ss-register-form" onsubmit="return false;">
+          <!-- Sign Up Form -->
+          <form class="ss-auth-form" id="ss-register-form" method="POST" action="{{ route('register.store') }}">
+            @csrf
 
             <!-- Full Name Input -->
             <div class="ss-form-group">
@@ -281,6 +290,7 @@
                   type="text" 
                   id="ss-register-name" 
                   name="name" 
+                  value="{{ old('name') }}"
                   class="ss-form-input" 
                   placeholder="e.g. Alex Morgan" 
                   autocomplete="name"
@@ -303,6 +313,7 @@
                   type="email" 
                   id="ss-register-email" 
                   name="email" 
+                  value="{{ old('email') }}"
                   class="ss-form-input" 
                   placeholder="name@example.com" 
                   autocomplete="email"
@@ -316,14 +327,14 @@
               <label class="ss-form-label">I'm joining to:</label>
               <div class="ss-role-selector" role="radiogroup" aria-label="Account primary role">
                 <label class="ss-role-pill">
-                  <input type="radio" name="solar_role" value="rent" checked>
+                  <input type="radio" name="solar_role" value="rent" {{ old('solar_role', 'rent') === 'rent' ? 'checked' : '' }}>
                   <span class="ss-role-btn">
                     <span class="ss-role-icon">⚡</span>
                     <span>Rent gear</span>
                   </span>
                 </label>
                 <label class="ss-role-pill">
-                  <input type="radio" name="solar_role" value="lend">
+                  <input type="radio" name="solar_role" value="lend" {{ old('solar_role') === 'lend' ? 'checked' : '' }}>
                   <span class="ss-role-btn">
                     <span class="ss-role-icon">☀️</span>
                     <span>Lend & earn</span>

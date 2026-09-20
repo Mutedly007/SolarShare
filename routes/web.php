@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -115,11 +116,10 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/login', function () {
-    return view('pages.front.Auth.auth', ['initialTab' => 'login']);
-})->name('login');
+Route::get('/login', [AuthController::class, 'show'])->defaults('tab', 'login')->name('login');
+Route::get('/register', [AuthController::class, 'show'])->defaults('tab', 'register')->name('register');
 
-Route::get('/register', function () {
-    return view('pages.front.Auth.auth', ['initialTab' => 'register']);
-})->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

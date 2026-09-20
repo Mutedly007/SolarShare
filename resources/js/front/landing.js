@@ -838,12 +838,11 @@ import '../../css/front/landing.css';
         });
       }
 
-      // Static Login Submit Simulation
-      const loginForm = document.getElementById('ss-login-form');
+      // Real form submissions: show loading state, then let the browser POST
       const loginBtn = document.getElementById('ss-btn-login-submit');
+      const loginForm = document.getElementById('ss-login-form');
       if (loginForm && loginBtn) {
-        loginForm.addEventListener('submit', (e) => {
-          e.preventDefault();
+        loginForm.addEventListener('submit', () => {
           const spinner = loginBtn.querySelector('.ss-btn-spinner');
           const arrow = loginBtn.querySelector('.ss-btn-arrow');
           const btnText = loginBtn.querySelector('.ss-btn-text');
@@ -852,28 +851,13 @@ import '../../css/front/landing.css';
           if (arrow) arrow.classList.add('d-none');
           if (btnText) btnText.textContent = 'Signing in...';
           loginBtn.disabled = true;
-
-          setTimeout(() => {
-            if (spinner) spinner.classList.add('d-none');
-            if (arrow) arrow.classList.remove('d-none');
-            if (btnText) btnText.textContent = 'Sign In to SolarShare';
-            loginBtn.disabled = false;
-
-            showToast(
-              'Welcome back to SolarShare!',
-              'Demo mode: Authenticated successfully. You can explore all site features.',
-              '☀️'
-            );
-          }, 650);
         });
       }
 
-      // Static Register Submit Simulation
-      const registerForm = document.getElementById('ss-register-form');
       const registerBtn = document.getElementById('ss-btn-register-submit');
+      const registerForm = document.getElementById('ss-register-form');
       if (registerForm && registerBtn) {
-        registerForm.addEventListener('submit', (e) => {
-          e.preventDefault();
+        registerForm.addEventListener('submit', () => {
           const spinner = registerBtn.querySelector('.ss-btn-spinner');
           const spark = registerBtn.querySelector('.ss-btn-sun-spark');
           const btnText = registerBtn.querySelector('.ss-btn-text');
@@ -882,19 +866,6 @@ import '../../css/front/landing.css';
           if (spark) spark.classList.add('d-none');
           if (btnText) btnText.textContent = 'Creating account...';
           registerBtn.disabled = true;
-
-          setTimeout(() => {
-            if (spinner) spinner.classList.add('d-none');
-            if (spark) spark.classList.remove('d-none');
-            if (btnText) btnText.textContent = 'Create SolarShare Account';
-            registerBtn.disabled = false;
-
-            showToast(
-              'Account Created!',
-              'Demo mode: Welcome to the SolarShare clean energy community.',
-              '🌱'
-            );
-          }, 650);
         });
       }
 
@@ -909,6 +880,27 @@ import '../../css/front/landing.css';
             '⚡'
           );
         });
+      });
+    }
+
+    /* ==========================================================================
+       16. USER MENU DROPDOWN (Navbar)
+       ========================================================================== */
+    const userMenuBtn = document.getElementById('ss-user-menu-btn');
+    const userDropdown = document.getElementById('ss-user-dropdown');
+    if (userMenuBtn && userDropdown) {
+      userMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = userDropdown.style.display === 'block';
+        userDropdown.style.display = isOpen ? 'none' : 'block';
+        userMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!userDropdown.contains(e.target) && e.target !== userMenuBtn) {
+          userDropdown.style.display = 'none';
+          userMenuBtn.setAttribute('aria-expanded', 'false');
+        }
       });
     }
 

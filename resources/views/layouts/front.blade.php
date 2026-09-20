@@ -96,6 +96,24 @@
 
   @include('partials.front.navbar')
 
+  @if (session('success'))
+  <div id="ss-flash-message" style="position:fixed; top:90px; left:50%; transform:translateX(-50%); z-index:10000; background:#10B981; color:#fff; padding:0.8rem 1.4rem; border-radius:12px; box-shadow:0 12px 30px -8px rgba(16,185,129,0.5); font-size:0.9rem; font-weight:600; max-width:90vw; text-align:center; transition:opacity 0.5s ease, visibility 0.5s ease;">
+    {{ session('success') }}
+  </div>
+  <script>
+    (function () {
+      var flash = document.getElementById('ss-flash-message');
+      if (flash) {
+        setTimeout(function () {
+          flash.style.opacity = '0';
+          flash.style.visibility = 'hidden';
+          setTimeout(function () { flash.remove(); }, 500);
+        }, 4000);
+      }
+    })();
+  </script>
+  @endif
+
   <main>
     @yield('content')
   </main>

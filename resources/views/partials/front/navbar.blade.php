@@ -14,7 +14,7 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <ul class="ss-nav-menu" role="menubar">
+      <ul class="ss-nav-menu" role="menubar" style="margin: 0 auto;">
         <li role="none"><a href="{{ url('/#how-it-works') }}" class="ss-nav-link" role="menuitem">How it works</a></li>
         <li role="none"><a href="{{ url('/#equipment') }}" class="ss-nav-link" role="menuitem">Equipment</a></li>
         <li role="none"><a href="{{ url('/#impact') }}" class="ss-nav-link" role="menuitem">Impact</a></li>
@@ -27,7 +27,29 @@
       <!-- Right Action Buttons -->
       <div class="ss-nav-actions">
         @auth
-          <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" class="ss-btn ss-btn-ghost">Dashboard</a>
+          <!-- Logged-in user menu -->
+          <div class="ss-user-menu" style="position: relative;">
+            <button type="button" id="ss-user-menu-btn" class="ss-btn ss-btn-ghost" style="display:inline-flex; align-items:center; gap:0.5rem;" aria-haspopup="true" aria-expanded="false">
+              <span class="ss-user-avatar" style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#FFB020,#FF6B3D); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700;">
+                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+              </span>
+              <span class="ss-user-name">{{ auth()->user()->name }}</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div id="ss-user-dropdown" class="ss-user-dropdown" style="display:none; position:absolute; right:0; top:calc(100% + 10px); min-width:200px; background:#fff; border:1px solid rgba(16,32,43,0.08); border-radius:14px; box-shadow:0 18px 40px -12px rgba(16,32,43,0.25); padding:0.5rem; z-index:1000;">
+              <div style="padding:0.6rem 0.8rem; border-bottom:1px solid rgba(16,32,43,0.06); margin-bottom:0.4rem;">
+                <strong style="display:block; font-size:0.9rem; color:#10202B;">{{ auth()->user()->name }}</strong>
+                <span style="font-size:0.78rem; color:#64748B;">{{ auth()->user()->email }}</span>
+              </div>
+              <a href="#" class="ss-user-dropdown-item" style="display:block; padding:0.55rem 0.8rem; border-radius:8px; font-size:0.88rem; color:#10202B; text-decoration:none;">Dashboard</a>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="ss-user-dropdown-item" style="display:block; width:100%; text-align:left; padding:0.55rem 0.8rem; border-radius:8px; font-size:0.88rem; color:#C2410C; background:none; border:none; cursor:pointer;">Sign out</button>
+              </form>
+            </div>
+          </div>
         @endauth
         @guest
           <a href="{{ route('login') }}" class="ss-btn ss-btn-ghost">Log in</a>
@@ -56,7 +78,11 @@
     </ul>
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       @auth
-        <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" class="ss-btn ss-btn-primary w-100 ss-mobile-nav-link">Dashboard</a>
+        <span style="text-align:center; font-size:0.85rem; color:#64748B;">Signed in as <strong>{{ auth()->user()->name }}</strong></span>
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="ss-btn ss-btn-secondary w-100">Sign out</button>
+        </form>
       @endauth
       @guest
         <a href="{{ route('login') }}" class="ss-btn ss-btn-secondary w-100 ss-mobile-nav-link">Log in</a>

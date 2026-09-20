@@ -98,334 +98,328 @@
     <!-- SECTION: hero -->
     <section class="ss-hero" id="hero">
       <div class="ss-container">
-        <div class="row align-items-center">
+        
+        <div class="ss-hero-wind-canvas ss-reveal">
+          <!-- Ambient Wind Turbine Video Background -->
+          <video class="ss-hero-video-bg" autoplay loop muted playsinline poster="assets/videos/hero-wind-turbine-poster.jpg">
+            <source src="assets/videos/hero-wind-turbine.mp4" type="video/mp4">
+          </video>
           
-          <!-- Left Column: Copy & CTAs -->
-          <div class="col-lg-6 col-md-12">
-            <div class="ss-hero-content">
+          <div class="ss-hero-wind-overlay" aria-hidden="true"></div>
+
+          <div class="ss-hero-wind-inner">
+            <div class="row align-items-center">
               
-              <!-- Subtle Trust Pill -->
-              <div class="ss-hero-badge">
-                <span class="ss-badge-dot"></span>
-                <span>Peer-to-Peer Clean Power · 100% Insured</span>
+              <!-- Left Column: Copy, Badges & Actions -->
+              <div class="col-lg-7 col-md-12">
+                <div class="ss-hero-wind-badge">
+                  <span class="ss-badge-dot"></span>
+                  <span>Peer-to-Peer Clean Power · 100% Insured</span>
+                </div>
+
+                <h1 class="ss-hero-wind-title">
+                  Borrow the <span class="ss-highlight">sun</span>.<br>
+                  Lend your <span class="ss-highlight">own</span>.
+                </h1>
+
+                <p class="ss-hero-wind-sub">
+                  Rent portable solar panels, high-capacity batteries, and micro wind turbines from neighbors nearby, or turn your idle clean power gear into monthly income.
+                </p>
+
+                <div class="ss-hero-cta">
+                  <a href="#equipment" class="ss-btn ss-btn-primary ss-btn-lg">
+                    Browse equipment
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M4.166 10h11.667m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                  <a href="#community" class="ss-btn ss-btn-secondary ss-btn-lg" style="background: rgba(255, 255, 255, 0.12); color: #FFF; border-color: rgba(255, 255, 255, 0.28);">
+                    List your equipment
+                  </a>
+                </div>
+
+                <!-- Stats Preview Strip -->
+                <div class="ss-hero-stats-glass">
+                  <div class="ss-stat-mini">
+                    <span class="ss-stat-mini-val">15 mins</span>
+                    <span class="ss-stat-mini-lbl">Average pickup radius</span>
+                  </div>
+                  <div style="width: 1px; height: 32px; background: rgba(255,255,255,0.2);"></div>
+                  <div class="ss-stat-mini">
+                    <span class="ss-stat-mini-val">$3,000</span>
+                    <span class="ss-stat-mini-lbl">SolarShield protection</span>
+                  </div>
+                  <div style="width: 1px; height: 32px; background: rgba(255,255,255,0.2);"></div>
+                  <div class="ss-stat-mini">
+                    <span class="ss-stat-mini-val">4.9 ★</span>
+                    <span class="ss-stat-mini-lbl">Community rating</span>
+                  </div>
+                  <div style="width: 1px; height: 32px; background: rgba(255,255,255,0.2);"></div>
+                  <div class="ss-stat-mini">
+                    <span class="ss-stat-mini-val">940+</span>
+                    <span class="ss-stat-mini-lbl">Verified items</span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Masked Slide-Up Headline Reveal -->
-              <h1 class="ss-hero-title">
-                <span class="ss-word-mask"><span class="ss-word ss-word-1">Borrow</span></span>
-                <span class="ss-word-mask"><span class="ss-word ss-word-2">the</span></span>
-                <span class="ss-word-mask"><span class="ss-word ss-word-3">sun.</span></span>
-                <br>
-                <span class="ss-word-mask"><span class="ss-word ss-word-4">Lend</span></span>
-                <span class="ss-word-mask"><span class="ss-word ss-word-5">your</span></span>
-                <span class="ss-word-mask"><span class="ss-word ss-word-6">own.</span></span>
-              </h1>
+              <!-- Right Column: Floating Equipment Glass Cards -->
+              <div class="col-lg-5 col-md-12 mt-4 mt-lg-0">
+                <div class="ss-hero-float-container">
+                  
+                  <div class="ss-glass-equipment-card ss-reveal ss-delay-1">
+                    <div class="ss-glass-card-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 10.5h18M9 4v13M15 4v13M6 21l3-4M18 21l-3-4"/></svg>
+                    </div>
+                    <div style="flex-grow: 1;">
+                      <div class="ss-glass-card-title">EcoFold 200W Solar Kit</div>
+                      <div class="ss-glass-card-meta">
+                        <span class="ss-glass-card-price">$18/day</span>
+                        <span>·</span>
+                        <span>0.8 miles away</span>
+                        <span>·</span>
+                        <span style="color: #10B981;">★ 4.9 (38)</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <p class="ss-hero-subtitle">
-                Rent portable solar panels, batteries and small wind turbines from people nearby, or earn from the ones sitting in your garage.
-              </p>
+                  <div class="ss-glass-equipment-card ss-reveal ss-delay-2">
+                    <div class="ss-glass-card-icon" style="background: rgba(15, 92, 107, 0.25); color: #38BDF8; border-color: rgba(56, 189, 248, 0.4);">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M8 3h8v3H8z"/><circle cx="9" cy="11" r="1.5"/><circle cx="15" cy="11" r="1.5"/><path d="M8 15h8"/></svg>
+                    </div>
+                    <div style="flex-grow: 1;">
+                      <div class="ss-glass-card-title">Anker Solix 768Wh Station</div>
+                      <div class="ss-glass-card-meta">
+                        <span class="ss-glass-card-price">$28/day</span>
+                        <span>·</span>
+                        <span>1.4 miles away</span>
+                        <span>·</span>
+                        <span style="color: #10B981;">★ 5.0 (24)</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <div class="ss-hero-cta">
-                <a href="#equipment" class="ss-btn ss-btn-primary ss-btn-lg">
-                  Browse equipment
-                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4.166 10h11.667m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-                <a href="#community" class="ss-btn ss-btn-secondary ss-btn-lg">
-                  List your equipment
-                </a>
-              </div>
+                  <div class="ss-glass-equipment-card ss-reveal ss-delay-3">
+                    <div class="ss-glass-card-icon" style="background: rgba(16, 185, 129, 0.25); color: #34D399; border-color: rgba(52, 211, 153, 0.4);">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M12 11v11M12 8l-6-4M12 8l6-4"/></svg>
+                    </div>
+                    <div style="flex-grow: 1;">
+                      <div class="ss-glass-card-title">AirX 400W Micro Wind Kit</div>
+                      <div class="ss-glass-card-meta">
+                        <span class="ss-glass-card-price">$22/day</span>
+                        <span>·</span>
+                        <span>2.1 miles away</span>
+                        <span>·</span>
+                        <span style="color: #10B981;">★ 4.8 (19)</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <!-- Quick Verification Proof -->
-              <div class="ss-hero-stats-preview">
-                <div class="ss-stat-mini">
-                  <span class="ss-stat-mini-val">15 mins</span>
-                  <span class="ss-stat-mini-lbl">Average pickup radius</span>
-                </div>
-                <div style="width: 1px; height: 32px; background: rgba(16,32,43,0.1);"></div>
-                <div class="ss-stat-mini">
-                  <span class="ss-stat-mini-val">$3,000</span>
-                  <span class="ss-stat-mini-lbl">SolarShield protection</span>
-                </div>
-                <div style="width: 1px; height: 32px; background: rgba(16,32,43,0.1);"></div>
-                <div class="ss-stat-mini">
-                  <span class="ss-stat-mini-val">4.9 ★</span>
-                  <span class="ss-stat-mini-lbl">Community rating</span>
                 </div>
               </div>
 
             </div>
           </div>
+        </div>
 
-          <!-- Right Column: Interactive Scene & Floating Equipment Cards -->
-          <div class="col-lg-6 col-md-12">
-            <div class="ss-hero-visual-col" id="ss-hero-visual">
-              <div class="ss-hero-scene-container">
-                
-                <!-- Floating Equipment Card 1 (Top Left) -->
-                <div class="ss-float-card ss-float-card-1">
-                  <div class="ss-float-card-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <rect x="3" y="4" width="18" height="13" rx="2" stroke="#FF6B3D" stroke-width="2"/>
-                      <path d="M3 10.5h18M9 4v13M15 4v13M6 21l3-4M18 21l-3-4" stroke="#FF6B3D" stroke-width="1.8" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="ss-float-card-info">
-                    <span class="ss-float-card-name">EcoFold 120W Panel</span>
-                    <div class="ss-float-card-meta">
-                      <span class="ss-float-card-price">$14/day</span>
-                      <span>·</span>
-                      <span>★ 4.9 (38)</span>
-                    </div>
-                  </div>
+      </div>
+    </section>
+    <!-- /SECTION: hero -->
+
+    <!-- SECTION: social proof & mission -->
+    <section class="ss-mission-social">
+      <div class="ss-container">
+        <div class="ss-mission-card ss-reveal">
+          <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12">
+              <p class="ss-mission-reveal-text">
+                "We believe clean power shouldn't sit idle in garages. SolarShare connects neighbors to share high-efficiency solar arrays, portable batteries, and micro-turbines on demand."
+              </p>
+              <div class="ss-story-avatars-wrap">
+                <div class="ss-story-avatar-stack">
+                  <img src="assets/images/story-1.webp" alt="Community member Elena" loading="lazy">
+                  <img src="assets/images/story-2.webp" alt="Community member Marcus" loading="lazy">
+                  <img src="assets/images/story-3.webp" alt="Community member Aisha" loading="lazy">
                 </div>
-
-                <!-- Floating Equipment Card 2 (Bottom Right) -->
-                <div class="ss-float-card ss-float-card-2">
-                  <div class="ss-float-card-icon" style="background: rgba(15, 92, 107, 0.12);">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <rect x="4" y="6" width="16" height="14" rx="3" stroke="#0F5C6B" stroke-width="2"/>
-                      <path d="M8 3h8v3H8z" fill="#0F5C6B"/>
-                      <circle cx="9" cy="11" r="1.5" fill="#0F5C6B"/>
-                      <circle cx="15" cy="11" r="1.5" fill="#0F5C6B"/>
-                      <path d="M8 15h8" stroke="#0F5C6B" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="ss-float-card-info">
-                    <span class="ss-float-card-name">Anker Solix 768Wh</span>
-                    <div class="ss-float-card-meta">
-                      <span class="ss-float-card-price">$28/day</span>
-                      <span>·</span>
-                      <span>★ 5.0 (24)</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Floating Equipment Card 3 (Bottom Left) -->
-                <div class="ss-float-card ss-float-card-3">
-                  <div class="ss-float-card-icon" style="background: rgba(16, 185, 129, 0.12);">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <circle cx="12" cy="8" r="3" stroke="#10B981" stroke-width="2"/>
-                      <path d="M12 11v11M12 8l-6-4M12 8l6-4" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="ss-float-card-info">
-                    <span class="ss-float-card-name">AirX 400W Wind Kit</span>
-                    <div class="ss-float-card-meta">
-                      <span class="ss-float-card-price">$22/day</span>
-                      <span>·</span>
-                      <span>★ 4.8 (19)</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Central Interactive SVG Illustration: Rising Sun, Tiltable Panel & Battery -->
-                <div class="ss-hero-svg-wrapper">
-                  <svg viewBox="0 0 500 440" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-100 h-100" aria-label="Interactive illustration of sun charging solar panel and power station">
-                    <defs>
-                      <linearGradient id="heroSunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#FFF5D8"/>
-                        <stop offset="50%" stop-color="#FFB020"/>
-                        <stop offset="100%" stop-color="#FF6B3D"/>
-                      </linearGradient>
-                      
-                      <radialGradient id="sunGlowGrad" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#FFB020" stop-opacity="0.45"/>
-                        <stop offset="70%" stop-color="#FF6B3D" stop-opacity="0.15"/>
-                        <stop offset="100%" stop-color="#FFE3C2" stop-opacity="0"/>
-                      </radialGradient>
-
-                      <linearGradient id="panelCells" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="#143447"/>
-                        <stop offset="100%" stop-color="#0F5C6B"/>
-                      </linearGradient>
-
-                      <!-- Particle conduit dash animation -->
-                      <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%" stop-color="#FFB020"/>
-                        <stop offset="100%" stop-color="#10B981"/>
-                      </linearGradient>
-                    </defs>
-
-                    <!-- Horizon arc line -->
-                    <path d="M20 380 Q 250 360 480 380" stroke="rgba(16, 32, 43, 0.08)" stroke-width="2" stroke-dasharray="4 6"/>
-
-                    <!-- Ambient Rising Sun with Pulsing Halo & Rotating Rays -->
-                    <g transform="translate(0, 0)">
-                      <circle cx="380" cy="120" r="85" fill="url(#sunGlowGrad)" />
-                      <circle cx="380" cy="120" r="46" fill="url(#heroSunGrad)" />
-                      
-                      <!-- Rotating Sun Rays -->
-                      <g class="ss-hero-sun-rays">
-                        <line x1="380" y1="52" x2="380" y2="36" stroke="#FFB020" stroke-width="3.5" stroke-linecap="round"/>
-                        <line x1="380" y1="188" x2="380" y2="204" stroke="#FFB020" stroke-width="3.5" stroke-linecap="round"/>
-                        <line x1="312" y1="120" x2="296" y2="120" stroke="#FFB020" stroke-width="3.5" stroke-linecap="round"/>
-                        <line x1="448" y1="120" x2="464" y2="120" stroke="#FFB020" stroke-width="3.5" stroke-linecap="round"/>
-                        <line x1="332" y1="72" x2="320" y2="60" stroke="#FF6B3D" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="428" y1="168" x2="440" y2="180" stroke="#FF6B3D" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="332" y1="168" x2="320" y2="180" stroke="#FF6B3D" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="428" y1="72" x2="440" y2="60" stroke="#FF6B3D" stroke-width="3" stroke-linecap="round"/>
-                      </g>
-                    </g>
-
-                    <!-- Stand Ground Shadow -->
-                    <ellipse cx="220" cy="380" rx="90" ry="12" fill="rgba(16, 32, 43, 0.06)" />
-                    <ellipse cx="395" cy="378" rx="45" ry="9" fill="rgba(16, 32, 43, 0.06)" />
-
-                    <!-- Tiltable Solar Panel Assembly (Tracks Mouse Pointer) -->
-                    <g id="ss-panel-tilt-group" class="ss-panel-tilt-group">
-                      <!-- Stand legs -->
-                      <path d="M175 378 L218 290 L265 378" stroke="#798E9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <line x1="190" y1="340" x2="248" y2="340" stroke="#798E9C" stroke-width="3"/>
-                      
-                      <!-- Panel Chassis / Outer Rim -->
-                      <rect x="130" y="195" width="180" height="120" rx="10" transform="rotate(-15 220 255)" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="4"/>
-                      <!-- Dark Monocrystalline Matrix -->
-                      <rect x="136" y="201" width="168" height="108" rx="7" transform="rotate(-15 220 255)" fill="url(#panelCells)"/>
-                      
-                      <!-- Photovoltaic Grid lines -->
-                      <g transform="rotate(-15 220 255)" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2">
-                        <line x1="136" y1="237" x2="304" y2="237"/>
-                        <line x1="136" y1="273" x2="304" y2="273"/>
-                        <line x1="178" y1="201" x2="178" y2="309"/>
-                        <line x1="220" y1="201" x2="220" y2="309"/>
-                        <line x1="262" y1="201" x2="262" y2="309"/>
-                      </g>
-
-                      <!-- Sunlight reflection gleam on glass -->
-                      <path d="M142 206 L280 206 L220 304 L142 304 Z" transform="rotate(-15 220 255)" fill="rgba(255, 255, 255, 0.12)"/>
-                    </g>
-
-                    <!-- Energy Flow Conduit Path from Panel to Battery -->
-                    <path id="ss-energy-cable" d="M 235 345 C 275 390, 325 395, 365 348" stroke="url(#flowGrad)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6 8">
-                      <animate attributeName="stroke-dashoffset" values="40; 0" dur="1.2s" repeatCount="indefinite"/>
-                    </path>
-
-                    <!-- Portable Battery / Power Station -->
-                    <g transform="translate(355, 280)">
-                      <rect x="0" y="20" width="85" height="78" rx="12" fill="#10202B" stroke="#334155" stroke-width="3"/>
-                      <path d="M22 20 V8 C22 4 26 0 32 0 H53 C59 0 63 4 63 8 V20" fill="none" stroke="#64748B" stroke-width="4"/>
-                      <rect x="12" y="32" width="61" height="28" rx="5" fill="#070F1A" stroke="#1E293B" stroke-width="1.5"/>
-                      <text x="18" y="45" fill="#10B981" font-family="'Sora', sans-serif" font-size="9" font-weight="700">98%</text>
-                      <text x="44" y="45" fill="#FFB020" font-family="'Sora', sans-serif" font-size="7">118W IN</text>
-                      
-                      <!-- Battery Fill Level Gauge (animated) -->
-                      <rect x="18" y="49" width="49" height="5" rx="2" fill="#1E293B"/>
-                      <rect x="18" y="49" width="48" height="5" rx="2" fill="#10B981">
-                        <animate attributeName="width" values="32; 48; 32" dur="4s" repeatCount="indefinite" />
-                      </rect>
-
-                      <circle cx="24" cy="74" r="5" fill="#1E293B"/>
-                      <circle cx="42" cy="74" r="5" fill="#1E293B"/>
-                      <rect x="56" y="70" width="14" height="8" rx="2" fill="#FF6B3D"/>
-                    </g>
-                  </svg>
-                </div>
-
+                <span style="font-size: 0.95rem; font-weight: 600; color: var(--ss-ink-muted);">
+                  Joined by 3,150+ verified local clean power hosts across the UK & Europe
+                </span>
               </div>
             </div>
+            <div class="col-lg-4 col-md-12 text-lg-end mt-4 mt-lg-0">
+              <div style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; background: var(--ss-midday-sky); padding: 1.5rem; border-radius: 18px;">
+                <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ss-deep-teal);">Verified Clean Impact</span>
+                <span style="font-family: var(--ss-font-heading); font-size: 2rem; font-weight: 800; color: var(--ss-deep-teal); line-height: 1;">12,480 kWh</span>
+                <span style="font-size: 0.85rem; color: var(--ss-ink-muted);">Zero-emission power generated & shared locally</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ss-brand-pills-row">
+            <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--ss-ink-subtle); letter-spacing: 0.05em;">Supported Hardware:</span>
+            <span class="ss-brand-pill">EcoFlow</span>
+            <span class="ss-brand-pill">Jackery</span>
+            <span class="ss-brand-pill">Anker Solix</span>
+            <span class="ss-brand-pill">Bluetti</span>
+            <span class="ss-brand-pill">Renogy</span>
+            <span class="ss-brand-pill">Goal Zero</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /SECTION: social proof & mission -->
+
+    <!-- SECTION: solutions-showcase -->
+    <section class="ss-section" style="padding: 0;">
+      <div class="ss-container">
+        <div class="ss-solar-showcase ss-reveal" id="solutions">
+          
+          <video class="ss-showcase-video-bg" autoplay loop muted playsinline poster="assets/videos/solar-showcase-poster.jpg">
+            <source src="assets/videos/solar-showcase.mp4" type="video/mp4">
+          </video>
+          
+          <div class="ss-showcase-overlay" aria-hidden="true"></div>
+
+          <div class="ss-showcase-content">
+            <div class="ss-showcase-top">
+              <div>
+                <div class="ss-section-tag" style="background: rgba(255, 255, 255, 0.12); color: #FFF; border-color: rgba(255, 255, 255, 0.25);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>Tailored Hardware Categories</span>
+                </div>
+                <h2 class="ss-section-title" style="color: #FFFFFF; max-width: 22ch; margin-bottom: 0.75rem;">
+                  Engineered For Clean Power Anywhere
+                </h2>
+                <p class="ss-section-subtitle" style="color: rgba(255, 255, 255, 0.85); margin-bottom: 0; max-width: 50ch;">
+                  Whether off-grid camping, setting up remote field audio, or backing up essential home appliances during grid outages.
+                </p>
+              </div>
+
+              <div>
+                <a href="#equipment" class="ss-btn ss-btn-primary">
+                  Explore all gear
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4.166 10h11.667m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="ss-showcase-cards-grid">
+              
+              <!-- Card 1 -->
+              <div class="ss-showcase-card ss-reveal ss-delay-1">
+                <div class="ss-showcase-card-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 10.5h18M9 4v13M15 4v13M6 21l3-4M18 21l-3-4"/></svg>
+                </div>
+                <h3 class="ss-showcase-card-title">Mobile Solar Arrays</h3>
+                <p class="ss-showcase-card-text">Foldable 100W to 400W monocrystalline panels with ETFE weatherproof layers and universal MC4 connectors for all power stations.</p>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="ss-showcase-card ss-reveal ss-delay-2">
+                <div class="ss-showcase-card-icon" style="background: rgba(255, 176, 32, 0.15); color: var(--ss-sun-amber-hover);">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M8 3h8v3H8z"/><circle cx="9" cy="11" r="1.5"/><circle cx="15" cy="11" r="1.5"/><path d="M8 15h8"/></svg>
+                </div>
+                <h3 class="ss-showcase-card-title">LiFePO4 Power Stations</h3>
+                <p class="ss-showcase-card-text">Ultra-safe lithium battery generators from 512Wh to 2048Wh with pure sine wave 230V AC output and high-speed USB-C fast charging.</p>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="ss-showcase-card ss-reveal ss-delay-3">
+                <div class="ss-showcase-card-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--ss-success);">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v11M12 8l-6-4M12 8l6-4"/></svg>
+                </div>
+                <h3 class="ss-showcase-card-title">Micro Wind Turbines</h3>
+                <p class="ss-showcase-card-text">Lightweight 400W coastal and ridge wind kits that generate steady electricity throughout the night and in cloudy weather conditions.</p>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
       </div>
     </section>
-    <!-- /SECTION: hero -->
+    <!-- /SECTION: solutions-showcase -->
 
-    <!-- SECTION: how-it-works -->
+    <!-- SECTION: how-it-works (Sticky Process Layout) -->
     <section class="ss-section ss-how" id="how-it-works">
       <div class="ss-container">
         
-        <div class="ss-section-header text-center ss-reveal">
-          <div class="ss-section-tag">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Simple 4-Step Cycle</span>
-          </div>
-          <h2 class="ss-section-title">How SolarShare Works</h2>
-          <p class="ss-section-subtitle mx-auto" style="margin: 0 auto;">Clean energy equipment is built to last decades, not gather dust. Sharing takes minutes.</p>
-        </div>
-
-        <div class="ss-how-track">
-          <!-- Connecting SVG line charging with scroll progress -->
-          <svg class="ss-how-svg-line" viewBox="0 0 1140 40" fill="none" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="60" y1="20" x2="1080" y2="20" class="ss-how-path-bg" />
-            <line id="ss-how-path-active" x1="60" y1="20" x2="1080" y2="20" class="ss-how-path-active" stroke-dasharray="900" stroke-dashoffset="900" />
-          </svg>
-
-          <div class="row">
+        <div class="ss-process-sticky-layout">
+          
+          <!-- Sticky Left Column -->
+          <div class="ss-process-sticky-left ss-reveal">
+            <div class="ss-process-step-indicator">
+              <span id="ss-process-current-step">Step 01 of 03</span>
+            </div>
             
-            <!-- Step 1: List -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-              <div class="ss-step-card ss-reveal ss-delay-1" id="step-1">
-                <div class="ss-step-header">
-                  <div class="ss-step-node">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                      <circle cx="12" cy="13" r="4"/>
-                    </svg>
-                  </div>
-                  <span class="ss-step-num">01</span>
+            <h2 class="ss-section-title" style="margin-bottom: 1rem;">
+              A Proven Process for Clean Power Sharing
+            </h2>
+            
+            <p class="ss-section-subtitle" style="margin-bottom: 2rem;">
+              Built for neighbors by neighbors. Renting or lending gear takes under five minutes with end-to-end ID verification and damage protection.
+            </p>
+
+            <a href="#equipment" class="ss-btn ss-btn-primary ss-btn-lg">
+              Get started now
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4.166 10h11.667m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Stacking Process Cards (Right Column) -->
+          <div class="ss-process-cards-stack">
+            
+            <!-- Step 1 -->
+            <div class="ss-process-card ss-reveal ss-delay-1" data-step="01">
+              <div class="ss-process-media">
+                <div class="ss-reveal-wrap">
+                  <img src="assets/images/process-1.avif" alt="Listing clean energy equipment" loading="lazy">
+                  <div class="ss-reveal-frame"></div>
                 </div>
-                <h3 class="ss-step-title">List</h3>
-                <p class="ss-step-desc">Snap your idle gear, set your daily price, and verify your ID in 2 minutes.</p>
+              </div>
+              <div class="ss-process-body">
+                <div class="ss-process-num-badge">01 — PRE-TRIP VERIFICATION</div>
+                <h3 class="ss-process-title">Snap, Verify & List in Minutes</h3>
+                <p class="ss-process-text">Lenders photograph their solar panel, battery station, or micro turbine, set custom weekend or daily rates, and prove functionality through a 2-minute identity check.</p>
               </div>
             </div>
 
-            <!-- Step 2: Book -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-              <div class="ss-step-card ss-reveal ss-delay-2" id="step-2">
-                <div class="ss-step-header">
-                  <div class="ss-step-node">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                  </div>
-                  <span class="ss-step-num">02</span>
+            <!-- Step 2 -->
+            <div class="ss-process-card ss-reveal ss-delay-2" data-step="02">
+              <div class="ss-process-media">
+                <div class="ss-reveal-wrap">
+                  <img src="assets/images/process-2.avif" alt="Locating tested gear nearby" loading="lazy">
+                  <div class="ss-reveal-frame"></div>
                 </div>
-                <h3 class="ss-step-title">Book</h3>
-                <p class="ss-step-desc">Browse tested gear within 15 miles, choose dates, and place a secured deposit.</p>
+              </div>
+              <div class="ss-process-body">
+                <div class="ss-process-num-badge">02 — NEIGHBORHOOD BOOKING</div>
+                <h3 class="ss-process-title">Browse Tested Gear Within 15 Miles</h3>
+                <p class="ss-process-text">Renters search verified items nearby, pick trip dates, and place a secured temporary hold. Meet locally at a community spot or doorstep for an instant handover.</p>
               </div>
             </div>
 
-            <!-- Step 3: Exchange -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-              <div class="ss-step-card ss-reveal ss-delay-3" id="step-3">
-                <div class="ss-step-header">
-                  <div class="ss-step-node">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                  </div>
-                  <span class="ss-step-num">03</span>
+            <!-- Step 3 -->
+            <div class="ss-process-card ss-reveal ss-delay-3" data-step="03">
+              <div class="ss-process-media">
+                <div class="ss-reveal-wrap">
+                  <img src="assets/images/process-3.avif" alt="Deploying renewable power" loading="lazy">
+                  <div class="ss-reveal-frame"></div>
                 </div>
-                <h3 class="ss-step-title">Exchange</h3>
-                <p class="ss-step-desc">Meet locally for a safe handover or opt for quick neighbourhood drop-off.</p>
               </div>
-            </div>
-
-            <!-- Step 4: Review -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-              <div class="ss-step-card ss-reveal ss-delay-4" id="step-4">
-                <div class="ss-step-header">
-                  <div class="ss-step-node">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                  </div>
-                  <span class="ss-step-num">04</span>
-                </div>
-                <h3 class="ss-step-title">Review</h3>
-                <p class="ss-step-desc">Return the gear charged, release the deposit, and swap 5-star community trust.</p>
+              <div class="ss-process-body">
+                <div class="ss-process-num-badge">03 — FIELD POWER & RETURN</div>
+                <h3 class="ss-process-title">Power Your Journey, Return Charged</h3>
+                <p class="ss-process-text">Run silent, fume-free clean electricity anywhere. Hand the equipment back charged, automatically release the deposit hold, and swap five-star community reviews.</p>
               </div>
             </div>
 
           </div>
+
         </div>
 
       </div>
@@ -445,109 +439,66 @@
           <p class="ss-section-subtitle">From weekend wild camping and campervan trips to remote fieldwork and home power backup.</p>
         </div>
 
-        <!-- Asymmetric Bento Grid of 5 Categories -->
-        <div class="ss-bento-grid">
+        <!-- Asymmetric 2x2 Bento Grid with Curtain Reveals -->
+        <div class="ss-arvora-bento">
           
-          <!-- Category 1: Portable Solar Panels (Featured Tile, 7 cols) -->
-          <div class="ss-bento-card ss-bento-featured ss-reveal">
-            <div class="ss-bento-content">
-              <span class="ss-bento-badge">Most Popular</span>
-              <h3 class="ss-bento-title">Portable Solar Panels</h3>
-              <p class="ss-bento-desc">Foldable monocrystalline kits from 50W to 400W. Weatherproof ETFE coatings, integrated kickstands, and universal MC4 or Anderson outputs.</p>
+          <!-- Tile 1 (Wide, 1.3fr) -->
+          <div class="ss-bento-project-item ss-reveal">
+            <div class="ss-bento-project-media">
+              <div class="ss-reveal-wrap">
+                <img src="assets/images/solar-1.avif" alt="SkyVolt 400W Monocrystalline Array in Field" loading="lazy">
+                <div class="ss-reveal-frame"></div>
+              </div>
             </div>
-            <div class="ss-bento-art">
-              <svg viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Foldable solar panels illustration">
-                <rect x="20" y="20" width="70" height="95" rx="6" fill="#143447" stroke="#38BDF8" stroke-width="2"/>
-                <rect x="98" y="20" width="70" height="95" rx="6" fill="#0F5C6B" stroke="#38BDF8" stroke-width="2"/>
-                <rect x="176" y="20" width="70" height="95" rx="6" fill="#143447" stroke="#38BDF8" stroke-width="2"/>
-                <!-- Cell grids -->
-                <path d="M20 52 h70 M20 84 h70 M98 52 h70 M98 84 h70 M176 52 h70 M176 84 h70" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
-                <path d="M55 20 v95 M133 20 v95 M211 20 v95" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
-                <!-- Hinges & Handle -->
-                <rect x="90" y="35" width="8" height="14" rx="2" fill="#94A3B8"/>
-                <rect x="90" y="80" width="8" height="14" rx="2" fill="#94A3B8"/>
-                <rect x="168" y="35" width="8" height="14" rx="2" fill="#94A3B8"/>
-                <rect x="168" y="80" width="8" height="14" rx="2" fill="#94A3B8"/>
-                <path d="M120 115 h26 v8 h-26 z" fill="#FFB020"/>
-              </svg>
+            <div class="ss-bento-project-body">
+              <span class="ss-bento-project-tag">Portable Solar Array</span>
+              <h3 class="ss-bento-project-title">SkyVolt 400W High-Output Solar Array</h3>
+              <p class="ss-bento-project-desc">Rugged quad-fold solar array featuring 23.4% monocrystalline cell efficiency and integrated kickstands. Perfect for basecamps, vans, and emergency charging.</p>
             </div>
           </div>
 
-          <!-- Category 2: Batteries & Power Banks (5 cols) -->
-          <div class="ss-bento-card ss-bento-battery ss-reveal ss-delay-1">
-            <div class="ss-bento-content">
-              <span class="ss-bento-badge" style="color: var(--ss-sun-amber-hover);">Essential Storage</span>
-              <h3 class="ss-bento-title">Batteries & Power Stations</h3>
-              <p class="ss-bento-desc">LiFePO4 power plants from 256Wh to 2048Wh with pure sine wave AC sockets, high-speed USB-C PD, and silent operation.</p>
+          <!-- Tile 2 (Tall, 1fr) -->
+          <div class="ss-bento-project-item ss-reveal ss-delay-1">
+            <div class="ss-bento-project-media">
+              <div class="ss-reveal-wrap">
+                <img src="assets/images/solar-2.avif" alt="Sunergy Works Home Battery Storage" loading="lazy">
+                <div class="ss-reveal-frame"></div>
+              </div>
             </div>
-            <div class="ss-bento-art">
-              <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Power station illustration">
-                <rect x="35" y="25" width="130" height="90" rx="14" fill="#0E1B2C" stroke="#334155" stroke-width="3"/>
-                <path d="M70 25 V12 C70 8 74 5 80 5 H120 C126 5 130 8 130 12 V25" fill="none" stroke="#64748B" stroke-width="4"/>
-                <rect x="52" y="42" width="96" height="30" rx="6" fill="#070F1A"/>
-                <text x="62" y="60" fill="#10B981" font-family="'Sora', sans-serif" font-size="11" font-weight="700">100%</text>
-                <text x="100" y="60" fill="#FFB020" font-family="'Sora', sans-serif" font-size="9">768Wh</text>
-                <circle cx="60" cy="92" r="7" fill="#1E293B"/>
-                <circle cx="85" cy="92" r="7" fill="#1E293B"/>
-                <rect x="108" y="87" width="22" height="10" rx="2" fill="#FF6B3D"/>
-              </svg>
+            <div class="ss-bento-project-body">
+              <span class="ss-bento-project-tag">Storage & Backup</span>
+              <h3 class="ss-bento-project-title">Sunergy Works LiFePO4 Station (2048Wh)</h3>
+              <p class="ss-bento-project-desc">Massive capacity lithium iron phosphate station capable of running fridges, medical CPAP units, and heavy-duty power tools off-grid.</p>
             </div>
           </div>
 
-          <!-- Category 3: Small Wind Turbines (4 cols) -->
-          <div class="ss-bento-card ss-bento-wind ss-reveal">
-            <div class="ss-bento-content">
-              <span class="ss-bento-badge" style="color: var(--ss-deep-teal);">All-Weather</span>
-              <h3 class="ss-bento-title">Small Wind Turbines</h3>
-              <p class="ss-bento-desc">Lightweight micro-turbines for night-time and coastal camping when the sun has gone down.</p>
+          <!-- Tile 3 (Tall, 1fr) -->
+          <div class="ss-bento-project-item ss-reveal">
+            <div class="ss-bento-project-media">
+              <div class="ss-reveal-wrap">
+                <img src="assets/images/solar-3.avif" alt="PowerHub Micro Wind Turbine" loading="lazy">
+                <div class="ss-reveal-frame"></div>
+              </div>
             </div>
-            <div class="ss-bento-art">
-              <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Wind turbine illustration">
-                <line x1="80" y1="50" x2="80" y2="115" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="80" cy="50" r="8" fill="#FFB020"/>
-                <path d="M80 50 Q 85 20 80 5 Q 75 20 80 50 Z" fill="#0F5C6B"/>
-                <path d="M80 50 Q 110 65 125 72 Q 105 78 80 50 Z" fill="#0F5C6B"/>
-                <path d="M80 50 Q 50 65 35 72 Q 55 78 80 50 Z" fill="#0F5C6B"/>
-                <path d="M20 30 Q 40 25 60 30" stroke="#CDEBF5" stroke-width="2" stroke-linecap="round"/>
-                <path d="M100 20 Q 120 15 140 20" stroke="#CDEBF5" stroke-width="2" stroke-linecap="round"/>
-              </svg>
+            <div class="ss-bento-project-body">
+              <span class="ss-bento-project-tag">Micro Wind Generation</span>
+              <h3 class="ss-bento-project-title">PowerHub AirX 400W Wind Generator</h3>
+              <p class="ss-bento-project-desc">Aerodynamic carbon fiber blades that spin noiselessly, generating power in 7 knot breezes and through coastal night storms.</p>
             </div>
           </div>
 
-          <!-- Category 4: Portable Inverters (4 cols) -->
-          <div class="ss-bento-card ss-bento-inverter ss-reveal ss-delay-1">
-            <div class="ss-bento-content">
-              <span class="ss-bento-badge">Clean Power</span>
-              <h3 class="ss-bento-title">Portable Inverters</h3>
-              <p class="ss-bento-desc">Pure sine wave 12V to 230V inverters to safely run laptops, cameras, CPAP machines, and power tools.</p>
+          <!-- Tile 4 (Wide, 1.3fr) -->
+          <div class="ss-bento-project-item ss-reveal ss-delay-1">
+            <div class="ss-bento-project-media">
+              <div class="ss-reveal-wrap">
+                <img src="assets/images/solar-4.avif" alt="EcoEdge Farmstead Clean Energy Hub" loading="lazy">
+                <div class="ss-reveal-frame"></div>
+              </div>
             </div>
-            <div class="ss-bento-art">
-              <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Power inverter illustration">
-                <rect x="25" y="30" width="110" height="65" rx="8" fill="#1E293B" stroke="#475569" stroke-width="2"/>
-                <rect x="35" y="42" width="22" height="40" rx="3" fill="#0F5C6B"/>
-                <path d="M70 62 Q 78 48 85 62 T 100 62" stroke="#FFB020" stroke-width="2.5" fill="none"/>
-                <circle cx="118" cy="52" r="5" fill="#10B981"/>
-                <circle cx="118" cy="72" r="5" fill="#EF4444"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Category 5: Solar Lamps & Lighting (4 cols) -->
-          <div class="ss-bento-card ss-bento-lamps ss-reveal ss-delay-2">
-            <div class="ss-bento-content">
-              <span class="ss-bento-badge" style="color: var(--ss-ember-coral);">Illumination</span>
-              <h3 class="ss-bento-title">Solar Lamps & Hubs</h3>
-              <p class="ss-bento-desc">Rugged 360-degree campsite lighting kits with USB power sharing and modular hanging solar pucks.</p>
-            </div>
-            <div class="ss-bento-art">
-              <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Solar lamp illustration">
-                <path d="M60 25 H100 L95 40 H65 Z" fill="#334155"/>
-                <rect x="65" y="20" width="30" height="5" rx="2" fill="#FFB020"/>
-                <path d="M65 40 L55 85 H105 L95 40 Z" fill="rgba(255, 176, 32, 0.25)" stroke="#FFB020" stroke-width="2"/>
-                <circle cx="80" cy="62" r="12" fill="#FFE3C2"/>
-                <rect x="52" y="85" width="56" height="15" rx="4" fill="#1E293B"/>
-                <path d="M80 8 Q80 2 80 0" stroke="#94A3B8" stroke-width="2"/>
-              </svg>
+            <div class="ss-bento-project-body">
+              <span class="ss-bento-project-tag">Dual Solar + Battery Pack</span>
+              <h3 class="ss-bento-project-title">EcoEdge Farmstead & Expedition Kit</h3>
+              <p class="ss-bento-project-desc">Complete off-grid combo including 200W foldable panel, 1024Wh battery station, and heavy-duty 50ft extension cable pack for remote locations.</p>
             </div>
           </div>
 
@@ -697,6 +648,75 @@
       </div>
     </section>
     <!-- /SECTION: equipment -->
+
+    <!-- SECTION: why-choose -->
+    <section class="ss-section ss-why-choose" id="why-choose">
+      <div class="ss-container">
+        
+        <div class="ss-section-header ss-reveal">
+          <div class="ss-section-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Community Trust & Protection</span>
+          </div>
+          <h2 class="ss-section-title">Why Neighbors Choose SolarShare</h2>
+          <p class="ss-section-subtitle">Creating a cleaner, shared-power future with neighborhood security at its core.</p>
+        </div>
+
+        <div class="ss-why-choose-grid">
+          
+          <!-- Left Bento Box (Dual split sub-card) -->
+          <div class="ss-why-left-card ss-reveal">
+            <div>
+              <div class="ss-why-thumb-wrap">
+                <div class="ss-reveal-wrap">
+                  <img src="assets/images/choose-1.avif" alt="Neighbor testing clean power equipment" loading="lazy">
+                  <div class="ss-reveal-frame"></div>
+                </div>
+              </div>
+              <a href="#equipment" class="ss-btn ss-btn-secondary ss-btn-sm w-100 justify-content-center">Browse all items</a>
+            </div>
+
+            <div class="ss-why-divider d-none d-sm-block"></div>
+
+            <div>
+              <div class="ss-counter-huge">4,850+</div>
+              <h4 style="font-family: var(--ss-font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--ss-ink);">Happy Borrowers</h4>
+              <p style="font-size: 0.88rem; color: var(--ss-ink-muted); margin-bottom: 1.25rem;">Renting verified clean gear across 140+ neighborhood chapters.</p>
+              
+              <div class="ss-story-avatar-stack mb-3">
+                <img src="assets/images/story-1.webp" alt="Borrower review" loading="lazy">
+                <img src="assets/images/story-2.webp" alt="Borrower review" loading="lazy">
+                <img src="assets/images/story-3.webp" alt="Borrower review" loading="lazy">
+              </div>
+
+              <div style="display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--ss-success);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>ID-Verified Community</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Bento Box (Video backdrop with 99.4% stat) -->
+          <div class="ss-why-right-card ss-reveal ss-delay-1">
+            <video class="ss-why-video-bg" autoplay loop muted playsinline poster="assets/videos/solar-team-poster.jpg">
+              <source src="assets/videos/solar-team.mp4" type="video/mp4">
+            </video>
+            <div class="ss-why-overlay" aria-hidden="true"></div>
+
+            <div class="ss-why-right-content">
+              <div class="ss-counter-huge" style="color: #FFFFFF;">99.4%</div>
+              <h3 style="font-family: var(--ss-font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #FFFFFF;">Booking Satisfaction</h3>
+              <p style="color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; line-height: 1.55; margin-bottom: 0;">
+                Every booking includes up to $3,000 SolarShield replacement guarantee, pre-authorized deposit holds, and 24/7 emergency handover claims.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- /SECTION: why-choose -->
 
     <!-- SECTION: impact -->
     <section class="ss-section ss-impact" id="impact">
@@ -1277,6 +1297,14 @@
           </form>
         </div>
 
+      </div>
+
+      <!-- Watermark row -->
+      <div class="ss-footer-watermark-row ss-reveal">
+        <div class="ss-footer-watermark">SolarShare</div>
+        <div class="ss-footer-solar-thumb">
+          <img src="assets/images/solar-1.avif" alt="SolarShare clean power" loading="lazy">
+        </div>
       </div>
 
       <!-- Footer Bottom Bar -->

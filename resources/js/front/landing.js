@@ -540,6 +540,51 @@ import '../../css/front/landing.css';
       revealElements.forEach(el => el.classList.add('is-visible'));
     }
 
+    /* ==========================================================================
+       13. ARVORA CURTAIN / SHUTTER IMAGE REVEALS ON SCROLL
+       ========================================================================== */
+    const curtainWraps = document.querySelectorAll('.ss-reveal-wrap');
+    if (!isReducedMotion) {
+      const curtainObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      curtainWraps.forEach(wrap => curtainObserver.observe(wrap));
+    } else {
+      curtainWraps.forEach(wrap => wrap.classList.add('is-revealed'));
+    }
+
+    /* ==========================================================================
+       14. STICKY PROCESS STEP TRACKER
+       ========================================================================== */
+    const processCards = document.querySelectorAll('.ss-process-card');
+    const processIndicator = document.getElementById('ss-process-current-step');
+    if (processCards.length > 0) {
+      const processObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const stepNum = entry.target.getAttribute('data-step') || '01';
+            if (processIndicator) {
+              processIndicator.textContent = `Step ${stepNum} of 03`;
+            }
+          }
+        });
+      }, {
+        threshold: 0.5,
+        rootMargin: '-10% 0px -40% 0px'
+      });
+
+      processCards.forEach(card => processObserver.observe(card));
+    }
+
     // Initial trigger
     updateNarratorSunAndSky();
     updateNavbarOnScroll();

@@ -55,6 +55,12 @@
         </form>
       </div>
 
+    <!-- Watermark row -->
+    <div class="ss-footer-watermark-row ss-reveal">
+      <div class="ss-footer-watermark">SolarShare</div>
+      <div class="ss-footer-solar-thumb">
+        <img src="{{ asset('assets/images/solar-1.avif') }}" alt="SolarShare clean power" loading="lazy">
+      </div>
     </div>
 
     <!-- Footer Bottom Bar -->

@@ -13,6 +13,68 @@
 </head>
 <body>
 
+  <!-- ===== Page Preloader (inline so it renders before Vite bundles) ===== -->
+  <div id="ss-preloader" style="
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #10202B;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  ">
+    <!-- Spinner container -->
+    <div style="position: relative; width: 80px; height: 80px;">
+      <!-- Outer ring -->
+      <svg style="position: absolute; inset: 0; animation: ss-spin 1.8s linear infinite;" width="80" height="80" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="35" fill="none" stroke="rgba(255,176,32,0.12)" stroke-width="3"/>
+        <circle cx="40" cy="40" r="35" fill="none" stroke="url(#ss-grad)" stroke-width="3" stroke-linecap="round" stroke-dasharray="160" stroke-dashoffset="120"/>
+        <defs><linearGradient id="ss-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB020"/><stop offset="100%" stop-color="#FF6B3D"/></linearGradient></defs>
+      </svg>
+      <!-- Inner ring (counter-rotating) -->
+      <svg style="position: absolute; inset: 12px; animation: ss-spin-reverse 2.4s linear infinite;" width="56" height="56" viewBox="0 0 56 56">
+        <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(56,189,248,0.1)" stroke-width="2"/>
+        <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(56,189,248,0.5)" stroke-width="2" stroke-linecap="round" stroke-dasharray="110" stroke-dashoffset="85"/>
+      </svg>
+      <!-- Sun core -->
+      <div style="
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 22px; height: 22px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FFB020, #FF8C00);
+        box-shadow: 0 0 20px rgba(255,176,32,0.5), 0 0 40px rgba(255,176,32,0.2);
+        animation: ss-core-pulse 1.8s ease-in-out infinite;
+      "></div>
+    </div>
+    <!-- Brand -->
+    <p style="
+      margin-top: 1.5rem;
+      font-family: 'Sora', 'DM Sans', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: ss-text-fade 1.8s ease-in-out infinite;
+    ">SolarShare</p>
+    <style>
+      @keyframes ss-spin { to { transform: rotate(360deg); } }
+      @keyframes ss-spin-reverse { to { transform: rotate(-360deg); } }
+      @keyframes ss-core-pulse {
+        0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+        50% { transform: translate(-50%,-50%) scale(1.15); opacity: 0.7; }
+      }
+      @keyframes ss-text-fade {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.7; }
+      }
+    </style>
+  </div>
+
   <!-- ==========================================================================
        THE SUN IS THE NARRATOR: Fixed Sky Layer & Orbiting Narrator Sun
        ========================================================================== -->
@@ -39,6 +101,18 @@
   </main>
 
   @include('partials.front.footer')
+
+  <!-- Dismiss preloader once everything is loaded -->
+  <script>
+    window.addEventListener('load', function() {
+      var preloader = document.getElementById('ss-preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        setTimeout(function() { preloader.remove(); }, 600);
+      }
+    });
+  </script>
 
 </body>
 </html>

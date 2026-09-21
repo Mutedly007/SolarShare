@@ -869,18 +869,7 @@ import '../../css/front/landing.css';
         });
       }
 
-      // Social button mock clicks
-      const socialBtns = document.querySelectorAll('.ss-auth-oauth-btn');
-      socialBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const provider = btn.textContent.trim().includes('Google') ? 'Google' : 'GitHub';
-          showToast(
-            `${provider} Sign-In`,
-            `Demo mode: Single sign-on with ${provider} is simulated.`,
-            '⚡'
-          );
-        });
-      });
+      // Social buttons are real OAuth links now (see AuthController::redirectToProvider)
     }
 
     /* ==========================================================================

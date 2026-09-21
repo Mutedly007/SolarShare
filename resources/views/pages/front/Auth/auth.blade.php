@@ -31,32 +31,106 @@
     <div class="ss-auth-card">
 
       <!-- Left Column: Visual Brand & Community Value Showcase -->
-      <div class="ss-auth-showcase" style="display:flex; align-items:center; justify-content:center;">
-        <div class="ss-auth-showcase-content" style="text-align:left;">
-          
-          <div class="ss-auth-badge">
-            <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <span>The SolarShare Network</span>
+      <div class="ss-auth-showcase">
+        <div class="ss-auth-showcase-slides">
+
+          <!-- Slide 1: shown on LOGIN tab -->
+          <div class="ss-auth-showcase-slide is-active" data-showcase="login">
+            <div class="ss-auth-showcase-content">
+              <div class="ss-auth-badge">
+                <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span>The SolarShare Network</span>
+              </div>
+
+              <h1 class="ss-auth-showcase-title">
+                Welcome back.<br>
+                <span class="ss-text-gradient">The sun kept working.</span>
+              </h1>
+
+              <p class="ss-auth-showcase-desc">
+                Your dashboard, active bookings, and energy earnings are right where you left them. Sign in and pick up the charge.
+              </p>
+            </div>
           </div>
 
-          <h1 class="ss-auth-showcase-title">
-            Borrow the sun.<br>
-            <span class="ss-text-gradient">Power your world.</span>
-          </h1>
+          <!-- Slide 2: shown on REGISTER tab -->
+          <div class="ss-auth-showcase-slide" data-showcase="register">
+            <div class="ss-auth-showcase-content">
+              <div class="ss-auth-badge">
+                <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span>Join 12,000+ Sharers</span>
+              </div>
 
-          <p class="ss-auth-showcase-desc">
-            Connect with verified neighbors to rent high-capacity power stations and solar gear on demand, or earn passive income from your idle clean energy setup.
-          </p>
+              <h1 class="ss-auth-showcase-title">
+                Borrow the sun.<br>
+                <span class="ss-text-gradient">Power your world.</span>
+              </h1>
+
+              <p class="ss-auth-showcase-desc">
+                Create a free account to rent verified solar gear from neighbors — or list your own and earn while it sits idle.
+              </p>
+
+              <ul class="ss-auth-perks">
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>SolarShield™ protected</strong>
+                    <span>Every rental covered up to $3,000</span>
+                  </div>
+                </li>
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                      <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>Earn passive income</strong>
+                    <span>Average lender makes $180/month</span>
+                  </div>
+                </li>
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>Verified community</strong>
+                    <span>ID-checked renters &amp; lenders only</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -91,6 +165,9 @@
           </button>
         </div>
 
+        <!-- Animated Panel Viewport: height morphs smoothly between Login / Register -->
+        <div class="ss-auth-panel-viewport" id="ss-auth-panel-viewport">
+
         <!-- ==========================================
              PANEL 1: LOGIN FORM
              ========================================== -->
@@ -107,7 +184,7 @@
 
           <!-- Social Quick Sign-In -->
           <div class="ss-auth-socials">
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign in with Google">
+            <a href="{{ route('oauth.redirect', ['provider' => 'google']) }}" class="ss-auth-oauth-btn" aria-label="Sign in with Google">
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
                 <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5.1 3.7-8.8z"/>
@@ -115,13 +192,13 @@
                 <path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 17C3.7 20.7 7.5 23.5 12 23.5z"/>
               </svg>
               <span>Google</span>
-            </button>
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign in with GitHub">
+            </a>
+            <a href="{{ route('oauth.redirect', ['provider' => 'github']) }}" class="ss-auth-oauth-btn" aria-label="Sign in with GitHub">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
               </svg>
               <span>GitHub</span>
-            </button>
+            </a>
           </div>
 
           <div class="ss-auth-divider">
@@ -135,7 +212,7 @@
           @endif
 
           <!-- Login Form -->
-          <form class="ss-auth-form" id="ss-login-form" method="POST" action="{{ route('login.attempt') }}">
+          <form class="ss-auth-form" id="ss-login-form" method="POST" action="{{ route('login.attempt') }}" novalidate>
             @csrf
 
             <!-- Email Input -->
@@ -158,6 +235,22 @@
                   autocomplete="email"
                   required
                 >
+              </div>
+
+              <!-- Live Email Validation Checks -->
+              <div class="ss-field-checks" data-bound-to="ss-login-email">
+                <div class="ss-field-check" data-rule="email-at">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Contains an @ symbol</span>
+                </div>
+                <div class="ss-field-check" data-rule="email-domain">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Valid domain ending (.com, .fr, .tn&hellip;)</span>
+                </div>
               </div>
             </div>
 
@@ -251,7 +344,7 @@
 
           <!-- Social Quick Sign-In -->
           <div class="ss-auth-socials">
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign up with Google">
+            <a href="{{ route('oauth.redirect', ['provider' => 'google']) }}" class="ss-auth-oauth-btn" aria-label="Sign up with Google">
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
                 <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5.1 3.7-8.8z"/>
@@ -259,21 +352,27 @@
                 <path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 17C3.7 20.7 7.5 23.5 12 23.5z"/>
               </svg>
               <span>Google</span>
-            </button>
-            <button type="button" class="ss-auth-oauth-btn" aria-label="Sign up with GitHub">
+            </a>
+            <a href="{{ route('oauth.redirect', ['provider' => 'github']) }}" class="ss-auth-oauth-btn" aria-label="Sign up with GitHub">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
               </svg>
               <span>GitHub</span>
-            </button>
+            </a>
           </div>
 
           <div class="ss-auth-divider">
             <span>or continue with email</span>
           </div>
 
+          @if ($errors->any())
+            <div class="ss-form-error-banner" style="background:#FFF1F0; border:1px solid #FF6B3D; color:#C2410C; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:1.25rem;">
+              {{ $errors->first() }}
+            </div>
+          @endif
+
           <!-- Sign Up Form -->
-          <form class="ss-auth-form" id="ss-register-form" method="POST" action="{{ route('register.store') }}">
+          <form class="ss-auth-form" id="ss-register-form" method="POST" action="{{ route('register.store') }}" novalidate>
             @csrf
 
             <!-- Full Name Input -->
@@ -319,6 +418,22 @@
                   autocomplete="email"
                   required
                 >
+              </div>
+
+              <!-- Live Email Validation Checks -->
+              <div class="ss-field-checks" data-bound-to="ss-register-email">
+                <div class="ss-field-check" data-rule="email-at">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Contains an @ symbol</span>
+                </div>
+                <div class="ss-field-check" data-rule="email-domain">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Valid domain ending (.com, .fr, .tn&hellip;)</span>
+                </div>
               </div>
             </div>
 
@@ -381,6 +496,40 @@
                 </div>
                 <div class="ss-pwd-meter-hint" id="ss-pwd-meter-hint">Password strength: Empty</div>
               </div>
+
+              <!-- Live Password Requirement Checklist -->
+              <div class="ss-field-checks" data-bound-to="ss-register-password">
+                <div class="ss-field-check" data-rule="pw-length">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">At least 8 characters</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-upper">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One uppercase letter (A&ndash;Z)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-lower">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One lowercase letter (a&ndash;z)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-number">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One number (0&ndash;9)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-symbol">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One symbol (!@#$&hellip;)</span>
+                </div>
+              </div>
             </div>
 
             <!-- Confirm Password Input -->
@@ -401,6 +550,16 @@
                   autocomplete="new-password"
                   required
                 >
+              </div>
+
+              <!-- Live Match Check -->
+              <div class="ss-field-checks" data-bound-to="ss-register-confirm">
+                <div class="ss-field-check" data-rule="pw-match" data-match-target="ss-register-password">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Both passwords match</span>
+                </div>
               </div>
             </div>
 
@@ -447,6 +606,8 @@
           </div>
 
         </div>
+
+        </div><!-- /ss-auth-panel-viewport -->
 
       </div>
 

@@ -212,7 +212,7 @@
           @endif
 
           <!-- Login Form -->
-          <form class="ss-auth-form" id="ss-login-form" method="POST" action="{{ route('login.attempt') }}">
+          <form class="ss-auth-form" id="ss-login-form" method="POST" action="{{ route('login.attempt') }}" novalidate>
             @csrf
 
             <!-- Email Input -->
@@ -235,6 +235,22 @@
                   autocomplete="email"
                   required
                 >
+              </div>
+
+              <!-- Live Email Validation Checks -->
+              <div class="ss-field-checks" data-bound-to="ss-login-email">
+                <div class="ss-field-check" data-rule="email-at">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Contains an @ symbol</span>
+                </div>
+                <div class="ss-field-check" data-rule="email-domain">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Valid domain ending (.com, .fr, .tn&hellip;)</span>
+                </div>
               </div>
             </div>
 
@@ -349,8 +365,14 @@
             <span>or continue with email</span>
           </div>
 
+          @if ($errors->any())
+            <div class="ss-form-error-banner" style="background:#FFF1F0; border:1px solid #FF6B3D; color:#C2410C; border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem; margin-bottom:1.25rem;">
+              {{ $errors->first() }}
+            </div>
+          @endif
+
           <!-- Sign Up Form -->
-          <form class="ss-auth-form" id="ss-register-form" method="POST" action="{{ route('register.store') }}">
+          <form class="ss-auth-form" id="ss-register-form" method="POST" action="{{ route('register.store') }}" novalidate>
             @csrf
 
             <!-- Full Name Input -->
@@ -396,6 +418,22 @@
                   autocomplete="email"
                   required
                 >
+              </div>
+
+              <!-- Live Email Validation Checks -->
+              <div class="ss-field-checks" data-bound-to="ss-register-email">
+                <div class="ss-field-check" data-rule="email-at">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Contains an @ symbol</span>
+                </div>
+                <div class="ss-field-check" data-rule="email-domain">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Valid domain ending (.com, .fr, .tn&hellip;)</span>
+                </div>
               </div>
             </div>
 
@@ -458,6 +496,40 @@
                 </div>
                 <div class="ss-pwd-meter-hint" id="ss-pwd-meter-hint">Password strength: Empty</div>
               </div>
+
+              <!-- Live Password Requirement Checklist -->
+              <div class="ss-field-checks" data-bound-to="ss-register-password">
+                <div class="ss-field-check" data-rule="pw-length">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">At least 8 characters</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-upper">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One uppercase letter (A&ndash;Z)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-lower">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One lowercase letter (a&ndash;z)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-number">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One number (0&ndash;9)</span>
+                </div>
+                <div class="ss-field-check" data-rule="pw-symbol">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">One symbol (!@#$&hellip;)</span>
+                </div>
+              </div>
             </div>
 
             <!-- Confirm Password Input -->
@@ -478,6 +550,16 @@
                   autocomplete="new-password"
                   required
                 >
+              </div>
+
+              <!-- Live Match Check -->
+              <div class="ss-field-checks" data-bound-to="ss-register-confirm">
+                <div class="ss-field-check" data-rule="pw-match" data-match-target="ss-register-password">
+                  <span class="ss-check-bullet">
+                    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><polyline class="ss-tick" points="1.5 5 4.5 8 10.5 2"></polyline><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>
+                  </span>
+                  <span class="ss-check-text">Both passwords match</span>
+                </div>
               </div>
             </div>
 

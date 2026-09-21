@@ -808,6 +808,22 @@ import '../../css/front/landing.css';
         syncViewportHeight(current);
       });
 
+      // When the active panel's height changes at runtime (e.g. a validation
+      // checklist expanding under a field), morph the viewport to follow it.
+      if (window.ResizeObserver && viewport) {
+        const panelResizeObserver = new ResizeObserver((entries) => {
+          const activeTab = tabNav && tabNav.classList.contains('is-register') ? 'register' : 'login';
+          entries.forEach(entry => {
+            const panel = entry.target;
+            if (panel === activePanelFor(activeTab) && panel.offsetHeight > 0) {
+              viewport.style.height = panel.offsetHeight + 'px';
+            }
+          });
+        });
+        panelResizeObserver.observe(loginPanel);
+        panelResizeObserver.observe(registerPanel);
+      }
+
       // Tab button clicks
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -850,56 +866,136 @@ import '../../css/front/landing.css';
       const meterFill = document.getElementById('ss-pwd-meter-fill');
       const meterHint = document.getElementById('ss-pwd-meter-hint');
 
-      if (regPwdInput && meterFill && meterHint) {
-        regPwdInput.addEventListener('input', () => {
-          const val = regPwdInput.value;
-          if (!val) {
-            meterFill.style.width = '0%';
-            meterFill.style.backgroundColor = 'transparent';
-            meterHint.textContent = 'Password strength: Empty';
-            meterHint.style.color = 'var(--ss-ink-subtle)';
-            return;
+      const METER_STEPS = [
+        { width: '0%',   color: 'transparent', label: 'Password strength: Empty' },
+        { width: '20%',  color: '#FF6B3D',     label: 'Password strength: Weak' },
+        { width: '40%',  color: '#FFB020',     label: 'Password strength: Fair' },
+        { width: '60%',  color: '#0F5C6B',     label: 'Password strength: Good' },
+        { width: '80%',  color: '#0E8F87',     label: 'Password strength: Strong' },
+        { width: '100%', color: '#10B981',     label: 'Password strength: Excellent & Secure! ✨' },
+      ];
+
+      function updateStrengthMeter(val) {
+        if (!meterFill || !meterHint) return;
+        const score =
+          (val.length >= 8 ? 1 : 0) +
+          (/[A-Z]/.test(val) ? 1 : 0) +
+          (/[a-z]/.test(val) ? 1 : 0) +
+          (/[0-9]/.test(val) ? 1 : 0) +
+          (/[^A-Za-z0-9\s]/.test(val) ? 1 : 0);
+        const step = METER_STEPS[score];
+        meterFill.style.width = step.width;
+        meterFill.style.backgroundColor = step.color;
+        meterHint.textContent = step.label;
+        meterHint.style.color = score === 0 ? 'var(--ss-ink-subtle)' : step.color;
+      }
+
+      if (regPwdInput) {
+        regPwdInput.addEventListener('input', () => updateStrengthMeter(regPwdInput.value));
+      }
+
+      // Live Field Validation ("entity control") — checklists under email / password / confirm
+      const FIELD_RULES = {
+        'email-at':     (v) => /^[^@\s]+@[^@\s]+$/.test(v),
+        'email-domain': (v) => /^[^@\s]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(v),
+        'pw-length':    (v) => v.length >= 8,
+        'pw-upper':     (v) => /[A-Z]/.test(v),
+        'pw-lower':     (v) => /[a-z]/.test(v),
+        'pw-number':    (v) => /[0-9]/.test(v),
+        'pw-symbol':    (v) => /[^A-Za-z0-9\s]/.test(v),
+      };
+
+      // Shared API so submit handlers can force fail/red state or query results
+      const checkAPI = new Map();
+
+      document.querySelectorAll('.ss-field-checks').forEach(container => {
+        const input = document.getElementById(container.getAttribute('data-bound-to'));
+        if (!input) return;
+
+        const checks = Array.from(container.querySelectorAll('.ss-field-check'));
+        const wrap = input.closest('.ss-input-wrap');
+        const matchCheck = checks.find(c => c.getAttribute('data-rule') === 'pw-match');
+        const state = { attempted: false, errored: false };
+        let partnerInput = null;
+        let lastAllPass = false;
+        let lastFilled = false;
+
+        if (matchCheck) {
+          partnerInput = document.getElementById(matchCheck.getAttribute('data-match-target'));
+        }
+
+        function evaluate() {
+          const val = input.value;
+          lastFilled = val.length > 0;
+          let allPass = true;
+
+          checks.forEach(check => {
+            const ruleName = check.getAttribute('data-rule');
+            let ok = false;
+
+            if (ruleName === 'pw-match') {
+              ok = lastFilled && !!partnerInput && partnerInput.value === val;
+            } else if (FIELD_RULES[ruleName]) {
+              ok = lastFilled && FIELD_RULES[ruleName](val);
+            }
+
+            check.classList.toggle('is-pass', ok);
+            if (!ok) allPass = false;
+          });
+          lastAllPass = allPass;
+
+          container.classList.toggle('all-pass', lastFilled && allPass);
+
+          if (wrap) {
+            const showBad = lastFilled ? (!allPass && state.attempted) : state.errored || state.attempted;
+            wrap.classList.toggle('is-valid', lastFilled && allPass);
+            wrap.classList.toggle('is-invalid', showBad);
+
+            if (lastFilled && !allPass && !state.attempted) {
+              // neutral gray while typing (before any submit attempt)
+            }
           }
+        }
 
-          let score = 0;
-          if (val.length >= 8) score++;
-          if (/[A-Z]/.test(val)) score++;
-          if (/[0-9]/.test(val)) score++;
-          if (/[^A-Za-z0-9]/.test(val)) score++;
-
-          switch (score) {
-            case 1:
-              meterFill.style.width = '25%';
-              meterFill.style.backgroundColor = '#FF6B3D';
-              meterHint.textContent = 'Password strength: Weak (try adding numbers/symbols)';
-              meterHint.style.color = '#FF6B3D';
-              break;
-            case 2:
-              meterFill.style.width = '50%';
-              meterFill.style.backgroundColor = '#FFB020';
-              meterHint.textContent = 'Password strength: Fair';
-              meterHint.style.color = '#FFB020';
-              break;
-            case 3:
-              meterFill.style.width = '75%';
-              meterFill.style.backgroundColor = '#0F5C6B';
-              meterHint.textContent = 'Password strength: Good';
-              meterHint.style.color = '#0F5C6B';
-              break;
-            case 4:
-              meterFill.style.width = '100%';
-              meterFill.style.backgroundColor = '#10B981';
-              meterHint.textContent = 'Password strength: Excellent & Secure! ✨';
-              meterHint.style.color = '#10B981';
-              break;
-            default:
-              meterFill.style.width = '15%';
-              meterFill.style.backgroundColor = '#FF6B3D';
-              meterHint.textContent = 'Password strength: Too short';
-              meterHint.style.color = '#FF6B3D';
+        input.addEventListener('focus', () => container.classList.add('is-open'));
+        input.addEventListener('input', () => {
+          container.classList.add('is-open');
+          // once the user fixes a previously failed field, drop the red state
+          if (state.errored && input.value) state.errored = false;
+          evaluate();
+        });
+        input.addEventListener('blur', () => {
+          if (!input.value && document.activeElement !== input) {
+            // left the field empty -> show red ✗ requirement list
+            state.errored = true;
+            container.classList.add('is-open', 'show-fail');
+            evaluate();
           }
         });
-      }
+
+        // Keep the match check live when the source password changes too
+        if (partnerInput) {
+          partnerInput.addEventListener('input', evaluate);
+        }
+
+        evaluate();
+        if (input.value) container.classList.add('is-open'); // pre-filled (e.g. after a validation error)
+
+        checkAPI.set(input.id, {
+          fail() {
+            state.attempted = true;
+            container.classList.add('is-open', 'show-fail');
+            evaluate();
+          },
+          reset() {
+            state.attempted = false;
+            state.errored = false;
+            container.classList.remove('show-fail');
+            evaluate();
+          },
+          allPass() { return lastFilled && lastAllPass; },
+        });
+      });
 
       // "Forgot Password" line click interaction
       const forgotBtn = document.getElementById('ss-btn-forgot-password');
@@ -913,11 +1009,93 @@ import '../../css/front/landing.css';
         });
       }
 
-      // Real form submissions: show loading state, then let the browser POST
+      // Real form submissions: validate first (styled ✗ errors, no native tooltips), then loading state + POST
+      const ERROR_SVG =
+        '<svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><path class="ss-cross" d="M2.5 2.5 L9.5 8.5 M9.5 2.5 L2.5 8.5"></path></svg>';
+
+      function showFieldError(group, message) {
+        let err = group.nextElementSibling;
+        if (!err || !err.classList.contains('ss-field-error')) {
+          err = document.createElement('div');
+          err.className = 'ss-field-error';
+          err.innerHTML = '<span class="ss-check-bullet">' + ERROR_SVG + '</span><span class="ss-error-text"></span>';
+          group.insertAdjacentElement('afterend', err);
+        }
+        err.querySelector('.ss-error-text').textContent = message;
+      }
+
+      function clearFieldError(wrap) {
+        const err = wrap.nextElementSibling;
+        if (err && err.classList.contains('ss-field-error')) err.remove();
+      }
+
+      function shakeWrap(wrap) {
+        wrap.classList.remove('ss-shake');
+        void wrap.offsetWidth; // restart the animation
+        wrap.classList.add('ss-shake');
+        setTimeout(() => wrap.classList.remove('ss-shake'), 600);
+      }
+
+      // Styled "required" messages for empty fields (replaces native browser tooltips)
+      const REQUIRED_MSGS = {
+        'ss-login-email':       'Email address is required — please fill it in',
+        'ss-login-password':    'Please enter your password',
+        'ss-register-email':    'Email address is required — please fill it in',
+        'ss-register-password': 'Password is required — please fill it in',
+        'ss-register-confirm':  'Please confirm your password',
+      };
+
+      // Clear injected errors as soon as the user starts fixing the field
+      Object.keys(REQUIRED_MSGS).forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.addEventListener('input', () => {
+          if (input.value.trim()) {
+            const wrap = input.closest('.ss-input-wrap');
+            clearFieldError(wrap);
+            wrap.classList.remove('is-invalid');
+          }
+        });
+      });
+
+      // Validate one field: empty -> red ✗ + styled required message; filled -> its checklist must pass
+      function gateField(id, invalid) {
+        const input = document.getElementById(id);
+        if (!input) return;
+        const api = checkAPI.get(id);
+        const wrap = input.closest('.ss-input-wrap');
+
+        if (!input.value.trim()) {
+          if (api) api.fail(); // flips the checklist bullets to red ✗
+          wrap.classList.add('is-invalid');
+          showFieldError(wrap, REQUIRED_MSGS[id] || 'This field is required — please fill it in');
+          shakeWrap(wrap);
+          invalid.push(input);
+          return;
+        }
+
+        if (api && !api.allPass()) {
+          api.fail();
+          shakeWrap(wrap);
+          invalid.push(input);
+        }
+      }
+
       const loginBtn = document.getElementById('ss-btn-login-submit');
       const loginForm = document.getElementById('ss-login-form');
       if (loginForm && loginBtn) {
-        loginForm.addEventListener('submit', () => {
+        loginForm.addEventListener('submit', (e) => {
+          const invalid = [];
+          gateField('ss-login-email', invalid);
+          gateField('ss-login-password', invalid);
+
+          if (invalid.length) {
+            e.preventDefault();
+            invalid[0].focus();
+            invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
           const spinner = loginBtn.querySelector('.ss-btn-spinner');
           const arrow = loginBtn.querySelector('.ss-btn-arrow');
           const btnText = loginBtn.querySelector('.ss-btn-text');
@@ -932,7 +1110,50 @@ import '../../css/front/landing.css';
       const registerBtn = document.getElementById('ss-btn-register-submit');
       const registerForm = document.getElementById('ss-register-form');
       if (registerForm && registerBtn) {
-        registerForm.addEventListener('submit', () => {
+        const nameInput = document.getElementById('ss-register-name');
+        const nameWrap = nameInput ? nameInput.closest('.ss-input-wrap') : null;
+        const termsInput = document.getElementById('ss-terms-agree');
+        const termsGroup = termsInput ? termsInput.closest('.ss-form-options') : null;
+
+        if (nameInput && nameWrap) {
+          nameInput.addEventListener('input', () => {
+            clearFieldError(nameWrap);
+            nameWrap.classList.remove('is-invalid');
+          });
+        }
+        if (termsInput && termsGroup) {
+          termsInput.addEventListener('change', () => {
+            if (termsInput.checked) clearFieldError(termsGroup);
+          });
+        }
+
+        registerForm.addEventListener('submit', (e) => {
+          const invalid = [];
+
+          if (nameInput && nameWrap && !nameInput.value.trim()) {
+            nameWrap.classList.add('is-invalid');
+            showFieldError(nameWrap, 'Full name is required — please fill it in');
+            shakeWrap(nameWrap);
+            invalid.push(nameInput);
+          }
+
+          // Empty -> styled ✗ "required" message + red checklist; filled -> checklist must pass
+          ['ss-register-email', 'ss-register-password', 'ss-register-confirm'].forEach(id => {
+            gateField(id, invalid);
+          });
+
+          if (termsInput && termsGroup && !termsInput.checked) {
+            showFieldError(termsGroup, 'Please agree to the Terms & Community Safety Guarantee to continue');
+            invalid.push(termsInput);
+          }
+
+          if (invalid.length) {
+            e.preventDefault();
+            invalid[0].focus();
+            invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
           const spinner = registerBtn.querySelector('.ss-btn-spinner');
           const spark = registerBtn.querySelector('.ss-btn-sun-spark');
           const btnText = registerBtn.querySelector('.ss-btn-text');

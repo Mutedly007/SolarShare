@@ -3036,6 +3036,14 @@ section[id] {
   .ss-auth-panel.is-active > * {
     animation: none !important;
   }
+
+  .ss-field-checks,
+  .ss-field-check,
+  .ss-check-bullet,
+  .ss-check-bullet svg {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 /* Tab Switcher with Glider */
@@ -3427,6 +3435,204 @@ section[id] {
   color: var(--ss-ink-subtle);
   margin-top: 0.3rem;
   font-weight: 600;
+}
+
+/* ============================================
+   Live Field Validation Checks
+   (expands under the field, items pop green)
+   ============================================ */
+.ss-field-checks {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 0.4s ease;
+  padding: 0 0.35rem;
+}
+
+.ss-field-checks.is-open {
+  max-height: 15rem;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 0.6rem;
+}
+
+.ss-field-check {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--ss-ink-muted);
+  padding: 0.22rem 0.1rem;
+  transition: color 0.3s ease;
+}
+
+/* Entrance stagger when the list opens (animation, so pass-state transitions stay instant) */
+.ss-field-checks.is-open .ss-field-check {
+  animation: ss-check-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-field-checks.is-open .ss-field-check:nth-child(1) { animation-delay: 0.04s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(2) { animation-delay: 0.09s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(3) { animation-delay: 0.14s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(4) { animation-delay: 0.19s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(5) { animation-delay: 0.24s; }
+
+@keyframes ss-check-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Circular bullet that fills green + draws the tick */
+.ss-check-bullet {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(16, 32, 43, 0.2);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.ss-check-bullet svg {
+  width: 10px;
+  height: 8px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  transition: stroke-dashoffset 0.4s ease 0.05s;
+}
+
+.ss-field-check.is-pass .ss-check-bullet {
+  background: linear-gradient(135deg, #10B981 0%, #0B9E6E 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+  animation: ss-check-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ss-field-check.is-pass .ss-check-bullet svg {
+  stroke-dashoffset: 0;
+}
+
+.ss-field-check.is-pass .ss-check-text {
+  color: #0B815A;
+  font-weight: 600;
+}
+
+@keyframes ss-check-pop {
+  0% { transform: scale(0.55); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Success/error glow on the input frame itself */
+.ss-input-wrap.is-valid {
+  border-color: rgba(16, 185, 129, 0.6);
+}
+
+.ss-input-wrap.is-valid .ss-input-icon {
+  color: var(--ss-success);
+}
+
+.ss-input-wrap.is-invalid {
+  border-color: rgba(255, 107, 61, 0.55);
+}
+
+.ss-input-wrap.is-invalid .ss-input-icon {
+  color: #FF6B3D;
+}
+
+/* Red ✗ fail state (empty required field or failed submit) */
+.ss-field-checks.show-fail {
+  max-height: 15rem;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 0.6rem;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet {
+  background: linear-gradient(135deg, #FF6B3D 0%, #E24A1F 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(255, 107, 61, 0.3);
+  animation: ss-check-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet .ss-tick {
+  stroke-dashoffset: 14;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 0;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-text {
+  color: #C2410C;
+  font-weight: 600;
+}
+
+/* Cross path drawn only in fail state (dash must exceed full cross path length ~18.4 to fully hide) */
+.ss-check-bullet .ss-cross {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 0.35s ease 0.05s;
+}
+
+.ss-field-check.is-pass .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 20;
+}
+
+/* Injected single-line error (fields without a checklist) */
+.ss-field-error {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+  padding: 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #C2410C;
+  animation: ss-check-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-field-error .ss-check-bullet {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #FF6B3D 0%, #E24A1F 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(255, 107, 61, 0.3);
+}
+
+.ss-field-error .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 0;
+}
+
+/* Shake for invalid fields on submit */
+.ss-input-wrap.ss-shake {
+  animation: ss-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes ss-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
 }
 
 /* Submit Buttons */

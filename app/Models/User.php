@@ -22,6 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'solar_role',
+        'provider',
+        'provider_id',
+        'avatar',
     ];
 
     /**

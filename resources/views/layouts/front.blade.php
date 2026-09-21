@@ -94,7 +94,7 @@
   <!-- The Narrator Sun: moves along an arc across the viewport on scroll -->
   <div id="ss-narrator-sun" class="ss-narrator-sun" aria-hidden="true"></div>
 
-  @include('partials.front.navbar')
+  @includeUnless(request()->routeIs('onboarding.*'), 'partials.front.navbar')
 
   @if (session('success'))
   <div id="ss-flash-message" style="position:fixed; top:90px; left:50%; transform:translateX(-50%); z-index:10000; background:#10B981; color:#fff; padding:0.8rem 1.4rem; border-radius:12px; box-shadow:0 12px 30px -8px rgba(16,185,129,0.5); font-size:0.9rem; font-weight:600; max-width:90vw; text-align:center; transition:opacity 0.5s ease, visibility 0.5s ease;">
@@ -118,7 +118,7 @@
     @yield('content')
   </main>
 
-  @include('partials.front.footer')
+  @includeUnless(request()->routeIs('onboarding.*'), 'partials.front.footer')
 
   <!-- Dismiss preloader once everything is loaded -->
   <script>

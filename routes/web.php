@@ -123,3 +123,17 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/auth/{provider}/redirect', [AuthController::class, 'redirectToProvider'])
+    ->whereIn('provider', ['google', 'github'])
+    ->name('oauth.redirect');
+
+Route::get('/auth/{provider}/callback', [AuthController::class, 'handleProviderCallback'])
+    ->whereIn('provider', ['google', 'github'])
+    ->name('oauth.callback');
+
+// Post-social-signup onboarding: pick a role (rent / lend / both)
+Route::middleware('auth')->group(function () {
+    Route::get('/onboarding/role', [AuthController::class, 'showRoleSelection'])->name('onboarding.role');
+    Route::post('/onboarding/role', [AuthController::class, 'storeRoleSelection'])->name('onboarding.role.store');
+});
+

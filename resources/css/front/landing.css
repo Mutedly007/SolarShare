@@ -2739,11 +2739,61 @@ section[id] {
   color: var(--ss-white);
   padding: 3.5rem 3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  transition: background 0.8s ease;
 }
+
+/* Register mode shifts the ambience toward "earning green" */
+.ss-auth-card.is-register-mode .ss-auth-showcase {
+  background: linear-gradient(155deg, #0E1B2C 0%, #0B5C55 65%, #12866F 100%);
+}
+
+/* Showcase crossfading slides */
+.ss-auth-showcase-slides {
+  display: grid;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.ss-auth-showcase-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(48px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.6s;
+  visibility: hidden;
+}
+
+.ss-auth-showcase-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+  transition:
+    opacity 0.5s ease 0.12s,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    visibility 0s;
+}
+
+.ss-auth-showcase-slide .ss-auth-showcase-content {
+  text-align: left;
+}
+
+/* Register-mode slide: stagger the perks in */
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item {
+  animation: ss-field-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(1) { animation-delay: 0.3s; }
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(2) { animation-delay: 0.4s; }
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(3) { animation-delay: 0.5s; }
 
 .ss-auth-showcase::before {
   content: '';
@@ -2918,6 +2968,84 @@ section[id] {
   justify-content: center;
 }
 
+/* ============================================
+   Animated Panel Viewport
+   (height morphs smoothly between the two forms)
+   ============================================ */
+.ss-auth-panel-viewport {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: height;
+}
+
+/* Form Panels: directional slide + fade */
+.ss-auth-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(56px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.55s;
+}
+
+.ss-auth-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    opacity 0.45s ease 0.08s,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+    visibility 0s;
+}
+
+/* Staggered field entrance on the active panel */
+.ss-auth-panel.is-active > * {
+  animation: ss-field-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-auth-panel.is-active > *:nth-child(1) { animation-delay: 0.12s; }
+.ss-auth-panel.is-active > *:nth-child(2) { animation-delay: 0.18s; }
+.ss-auth-panel.is-active > *:nth-child(3) { animation-delay: 0.24s; }
+.ss-auth-panel.is-active > *:nth-child(4) { animation-delay: 0.3s; }
+.ss-auth-panel.is-active > *:nth-child(5) { animation-delay: 0.36s; }
+.ss-auth-panel.is-active > *:nth-child(6) { animation-delay: 0.42s; }
+.ss-auth-panel.is-active > *:nth-child(7) { animation-delay: 0.48s; }
+
+@keyframes ss-field-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ss-auth-panel-viewport,
+  .ss-auth-panel,
+  .ss-auth-showcase-slide,
+  .ss-auth-tab-glider {
+    transition: none !important;
+  }
+
+  .ss-auth-panel.is-active > * {
+    animation: none !important;
+  }
+
+  .ss-field-checks,
+  .ss-field-check,
+  .ss-check-bullet,
+  .ss-check-bullet svg {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 /* Tab Switcher with Glider */
 .ss-auth-tab-nav {
   position: relative;
@@ -2968,25 +3096,7 @@ section[id] {
   color: var(--ss-ink);
 }
 
-/* Form Panels */
-.ss-auth-panel {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.ss-auth-panel.is-active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-  animation: ss-auth-appear 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes ss-auth-appear {
-  from { opacity: 0; transform: translateY(12px) scale(0.99); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
+/* (legacy tab-panel styles removed — replaced by the animated viewport above) */
 
 .ss-auth-header {
   margin-bottom: 1.5rem;
@@ -3034,6 +3144,7 @@ section[id] {
   font-weight: 700 !important;
   cursor: pointer !important;
   white-space: nowrap !important;
+  text-decoration: none !important;
   transition: all var(--ss-dur-fast) var(--ss-ease-spring) !important;
   box-shadow: 0 2px 6px rgba(16, 32, 43, 0.04) !important;
 }
@@ -3324,6 +3435,204 @@ section[id] {
   color: var(--ss-ink-subtle);
   margin-top: 0.3rem;
   font-weight: 600;
+}
+
+/* ============================================
+   Live Field Validation Checks
+   (expands under the field, items pop green)
+   ============================================ */
+.ss-field-checks {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 0.4s ease;
+  padding: 0 0.35rem;
+}
+
+.ss-field-checks.is-open {
+  max-height: 15rem;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 0.6rem;
+}
+
+.ss-field-check {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--ss-ink-muted);
+  padding: 0.22rem 0.1rem;
+  transition: color 0.3s ease;
+}
+
+/* Entrance stagger when the list opens (animation, so pass-state transitions stay instant) */
+.ss-field-checks.is-open .ss-field-check {
+  animation: ss-check-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-field-checks.is-open .ss-field-check:nth-child(1) { animation-delay: 0.04s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(2) { animation-delay: 0.09s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(3) { animation-delay: 0.14s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(4) { animation-delay: 0.19s; }
+.ss-field-checks.is-open .ss-field-check:nth-child(5) { animation-delay: 0.24s; }
+
+@keyframes ss-check-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Circular bullet that fills green + draws the tick */
+.ss-check-bullet {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(16, 32, 43, 0.2);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.ss-check-bullet svg {
+  width: 10px;
+  height: 8px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  transition: stroke-dashoffset 0.4s ease 0.05s;
+}
+
+.ss-field-check.is-pass .ss-check-bullet {
+  background: linear-gradient(135deg, #10B981 0%, #0B9E6E 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+  animation: ss-check-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ss-field-check.is-pass .ss-check-bullet svg {
+  stroke-dashoffset: 0;
+}
+
+.ss-field-check.is-pass .ss-check-text {
+  color: #0B815A;
+  font-weight: 600;
+}
+
+@keyframes ss-check-pop {
+  0% { transform: scale(0.55); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Success/error glow on the input frame itself */
+.ss-input-wrap.is-valid {
+  border-color: rgba(16, 185, 129, 0.6);
+}
+
+.ss-input-wrap.is-valid .ss-input-icon {
+  color: var(--ss-success);
+}
+
+.ss-input-wrap.is-invalid {
+  border-color: rgba(255, 107, 61, 0.55);
+}
+
+.ss-input-wrap.is-invalid .ss-input-icon {
+  color: #FF6B3D;
+}
+
+/* Red ✗ fail state (empty required field or failed submit) */
+.ss-field-checks.show-fail {
+  max-height: 15rem;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 0.6rem;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet {
+  background: linear-gradient(135deg, #FF6B3D 0%, #E24A1F 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(255, 107, 61, 0.3);
+  animation: ss-check-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet .ss-tick {
+  stroke-dashoffset: 14;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 0;
+}
+
+.ss-field-checks.show-fail .ss-field-check:not(.is-pass) .ss-check-text {
+  color: #C2410C;
+  font-weight: 600;
+}
+
+/* Cross path drawn only in fail state (dash must exceed full cross path length ~18.4 to fully hide) */
+.ss-check-bullet .ss-cross {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 0.35s ease 0.05s;
+}
+
+.ss-field-check.is-pass .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 20;
+}
+
+/* Injected single-line error (fields without a checklist) */
+.ss-field-error {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+  padding: 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #C2410C;
+  animation: ss-check-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-field-error .ss-check-bullet {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #FF6B3D 0%, #E24A1F 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(255, 107, 61, 0.3);
+}
+
+.ss-field-error .ss-check-bullet .ss-cross {
+  stroke-dashoffset: 0;
+}
+
+/* Shake for invalid fields on submit */
+.ss-input-wrap.ss-shake {
+  animation: ss-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes ss-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
 }
 
 /* Submit Buttons */

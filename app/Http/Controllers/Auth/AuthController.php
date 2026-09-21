@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -34,7 +36,7 @@ class AuthController extends Controller
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'solar_role' => ['nullable', 'in:rent,lend,both'],
-            'password' => ['required', 'confirmed', Password::min(8)],
+            'password' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
         ]);
 
         $user = User::create([
@@ -84,5 +86,112 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('home')->with('success', 'You have been signed out.');
+    }
+
+    /**
+     * Redirect the user to the OAuth provider's authorization page.
+     */
+    public function redirectToProvider(string $provider)
+    {
+        if (! in_array($provider, ['google', 'github'], true)) {
+            abort(404);
+        }
+
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * Handle the callback from the OAuth provider.
+     */
+    public function handleProviderCallback(Request $request, string $provider)
+    {
+        if (! in_array($provider, ['google', 'github'], true)) {
+            abort(404);
+        }
+
+        try {
+            $socialUser = Socialite::driver($provider)->user();
+        } catch (\Throwable $e) {
+            report($e);
+
+            return redirect()->route('login')
+                ->withErrors(['email' => 'We could not sign you in with ' . ucfirst($provider) . '. Please try again.']);
+        }
+
+        if (empty($socialUser->getEmail())) {
+            return redirect()->route('login')
+                ->withErrors(['email' => 'Your ' . ucfirst($provider) . ' account does not share an email address, so we could not complete the sign-in.']);
+        }
+
+        $user = User::where('provider', $provider)
+            ->where('provider_id', $socialUser->getId())
+            ->first();
+
+        if (! $user) {
+            $user = User::where('email', $socialUser->getEmail())->first();
+
+            if ($user) {
+                $user->forceFill([
+                    'provider' => $provider,
+                    'provider_id' => $socialUser->getId(),
+                    'avatar' => $socialUser->getAvatar(),
+                ])->save();
+            }
+        }
+
+        if (! $user) {
+            $user = User::create([
+                'name' => $socialUser->getName() ?: $socialUser->getNickname() ?: 'SolarShare Member',
+                'email' => $socialUser->getEmail(),
+                'password' => Hash::make(Str::random(32)),
+                'provider' => $provider,
+                'provider_id' => $socialUser->getId(),
+                'avatar' => $socialUser->getAvatar(),
+            ]);
+        }
+
+        Auth::login($user, true);
+        $request->session()->regenerate();
+
+        // Any account without a role goes to onboarding: brand-new social accounts,
+        // and accounts created before onboarding existed (provider linked, role still null).
+        if (empty($user->solar_role)) {
+            return redirect()
+                ->route('onboarding.role')
+                ->with('success', 'Welcome to SolarShare, ' . $user->name . '! Just one more step.');
+        }
+
+        return redirect()->intended(route('home'))->with('success', 'Welcome, ' . $user->name . '!');
+    }
+
+    /**
+     * Show the role-selection step for freshly created social-login accounts.
+     */
+    public function showRoleSelection(Request $request)
+    {
+        $user = $request->user();
+
+        // Already has a role (or registered via the normal form)? Nothing to do here.
+        if (! $user || $user->solar_role) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.front.Auth.onboarding', ['user' => $user]);
+    }
+
+    /**
+     * Persist the role chosen during the social-signup onboarding step.
+     */
+    public function storeRoleSelection(Request $request)
+    {
+        $user = $request->user();
+
+        $validated = $request->validate([
+            'solar_role' => ['required', 'in:rent,lend,both'],
+        ]);
+
+        $user->forceFill(['solar_role' => $validated['solar_role']])->save();
+
+        return redirect()->route('home')->with('success', 'You are all set, ' . $user->name . '! Welcome to SolarShare.');
     }
 }

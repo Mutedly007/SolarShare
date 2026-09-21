@@ -31,32 +31,106 @@
     <div class="ss-auth-card">
 
       <!-- Left Column: Visual Brand & Community Value Showcase -->
-      <div class="ss-auth-showcase" style="display:flex; align-items:center; justify-content:center;">
-        <div class="ss-auth-showcase-content" style="text-align:left;">
-          
-          <div class="ss-auth-badge">
-            <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <span>The SolarShare Network</span>
+      <div class="ss-auth-showcase">
+        <div class="ss-auth-showcase-slides">
+
+          <!-- Slide 1: shown on LOGIN tab -->
+          <div class="ss-auth-showcase-slide is-active" data-showcase="login">
+            <div class="ss-auth-showcase-content">
+              <div class="ss-auth-badge">
+                <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span>The SolarShare Network</span>
+              </div>
+
+              <h1 class="ss-auth-showcase-title">
+                Welcome back.<br>
+                <span class="ss-text-gradient">The sun kept working.</span>
+              </h1>
+
+              <p class="ss-auth-showcase-desc">
+                Your dashboard, active bookings, and energy earnings are right where you left them. Sign in and pick up the charge.
+              </p>
+            </div>
           </div>
 
-          <h1 class="ss-auth-showcase-title">
-            Borrow the sun.<br>
-            <span class="ss-text-gradient">Power your world.</span>
-          </h1>
+          <!-- Slide 2: shown on REGISTER tab -->
+          <div class="ss-auth-showcase-slide" data-showcase="register">
+            <div class="ss-auth-showcase-content">
+              <div class="ss-auth-badge">
+                <svg class="ss-auth-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span>Join 12,000+ Sharers</span>
+              </div>
 
-          <p class="ss-auth-showcase-desc">
-            Connect with verified neighbors to rent high-capacity power stations and solar gear on demand, or earn passive income from your idle clean energy setup.
-          </p>
+              <h1 class="ss-auth-showcase-title">
+                Borrow the sun.<br>
+                <span class="ss-text-gradient">Power your world.</span>
+              </h1>
+
+              <p class="ss-auth-showcase-desc">
+                Create a free account to rent verified solar gear from neighbors — or list your own and earn while it sits idle.
+              </p>
+
+              <ul class="ss-auth-perks">
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>SolarShield™ protected</strong>
+                    <span>Every rental covered up to $3,000</span>
+                  </div>
+                </li>
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                      <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>Earn passive income</strong>
+                    <span>Average lender makes $180/month</span>
+                  </div>
+                </li>
+                <li class="ss-auth-perk-item">
+                  <div class="ss-auth-perk-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div class="ss-auth-perk-text">
+                    <strong>Verified community</strong>
+                    <span>ID-checked renters &amp; lenders only</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -90,6 +164,9 @@
             Create Account
           </button>
         </div>
+
+        <!-- Animated Panel Viewport: height morphs smoothly between Login / Register -->
+        <div class="ss-auth-panel-viewport" id="ss-auth-panel-viewport">
 
         <!-- ==========================================
              PANEL 1: LOGIN FORM
@@ -447,6 +524,8 @@
           </div>
 
         </div>
+
+        </div><!-- /ss-auth-panel-viewport -->
 
       </div>
 

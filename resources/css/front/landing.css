@@ -2739,11 +2739,61 @@ section[id] {
   color: var(--ss-white);
   padding: 3.5rem 3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  transition: background 0.8s ease;
 }
+
+/* Register mode shifts the ambience toward "earning green" */
+.ss-auth-card.is-register-mode .ss-auth-showcase {
+  background: linear-gradient(155deg, #0E1B2C 0%, #0B5C55 65%, #12866F 100%);
+}
+
+/* Showcase crossfading slides */
+.ss-auth-showcase-slides {
+  display: grid;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.ss-auth-showcase-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(48px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.6s;
+  visibility: hidden;
+}
+
+.ss-auth-showcase-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+  transition:
+    opacity 0.5s ease 0.12s,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    visibility 0s;
+}
+
+.ss-auth-showcase-slide .ss-auth-showcase-content {
+  text-align: left;
+}
+
+/* Register-mode slide: stagger the perks in */
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item {
+  animation: ss-field-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(1) { animation-delay: 0.3s; }
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(2) { animation-delay: 0.4s; }
+.ss-auth-showcase-slide.is-active .ss-auth-perk-item:nth-child(3) { animation-delay: 0.5s; }
 
 .ss-auth-showcase::before {
   content: '';
@@ -2918,6 +2968,76 @@ section[id] {
   justify-content: center;
 }
 
+/* ============================================
+   Animated Panel Viewport
+   (height morphs smoothly between the two forms)
+   ============================================ */
+.ss-auth-panel-viewport {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: height;
+}
+
+/* Form Panels: directional slide + fade */
+.ss-auth-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(56px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.55s;
+}
+
+.ss-auth-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    opacity 0.45s ease 0.08s,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+    visibility 0s;
+}
+
+/* Staggered field entrance on the active panel */
+.ss-auth-panel.is-active > * {
+  animation: ss-field-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ss-auth-panel.is-active > *:nth-child(1) { animation-delay: 0.12s; }
+.ss-auth-panel.is-active > *:nth-child(2) { animation-delay: 0.18s; }
+.ss-auth-panel.is-active > *:nth-child(3) { animation-delay: 0.24s; }
+.ss-auth-panel.is-active > *:nth-child(4) { animation-delay: 0.3s; }
+.ss-auth-panel.is-active > *:nth-child(5) { animation-delay: 0.36s; }
+.ss-auth-panel.is-active > *:nth-child(6) { animation-delay: 0.42s; }
+.ss-auth-panel.is-active > *:nth-child(7) { animation-delay: 0.48s; }
+
+@keyframes ss-field-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ss-auth-panel-viewport,
+  .ss-auth-panel,
+  .ss-auth-showcase-slide,
+  .ss-auth-tab-glider {
+    transition: none !important;
+  }
+
+  .ss-auth-panel.is-active > * {
+    animation: none !important;
+  }
+}
+
 /* Tab Switcher with Glider */
 .ss-auth-tab-nav {
   position: relative;
@@ -2968,25 +3088,7 @@ section[id] {
   color: var(--ss-ink);
 }
 
-/* Form Panels */
-.ss-auth-panel {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.ss-auth-panel.is-active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-  animation: ss-auth-appear 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes ss-auth-appear {
-  from { opacity: 0; transform: translateY(12px) scale(0.99); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
+/* (legacy tab-panel styles removed — replaced by the animated viewport above) */
 
 .ss-auth-header {
   margin-bottom: 1.5rem;

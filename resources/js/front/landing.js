@@ -704,34 +704,109 @@ import '../../css/front/landing.css';
         });
       }
 
+      const viewport = document.getElementById('ss-auth-panel-viewport');
+      const authCard = document.querySelector('.ss-auth-card');
+      const showcaseSlides = document.querySelectorAll('.ss-auth-showcase-slide');
+      const activePanelFor = (tab) => (tab === 'register' ? registerPanel : loginPanel);
+
+      // Keep the viewport height locked to the active panel so the card morphs smoothly
+      function syncViewportHeight(tab) {
+        const panel = activePanelFor(tab);
+        if (viewport && panel && panel.offsetHeight > 0) {
+          viewport.style.height = panel.offsetHeight + 'px';
+        }
+      }
+
       function switchAuthTab(targetTab) {
         if (!tabNav || !loginPanel || !registerPanel) return;
 
+        const isRegister = targetTab === 'register';
+        const entering = isRegister ? registerPanel : loginPanel;
+        const leaving = isRegister ? loginPanel : registerPanel;
+
+        // Tab buttons
         tabBtns.forEach(btn => {
           const isTarget = btn.getAttribute('data-tab') === targetTab;
           btn.classList.toggle('is-active', isTarget);
           btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
         });
+        tabNav.classList.toggle('is-register', isRegister);
 
-        if (targetTab === 'register') {
-          tabNav.classList.add('is-register');
-          loginPanel.classList.remove('is-active');
-          registerPanel.classList.add('is-active');
-          window.history.replaceState(null, '', '/register');
-        } else {
-          tabNav.classList.remove('is-register');
-          registerPanel.classList.remove('is-active');
-          loginPanel.classList.add('is-active');
-          window.history.replaceState(null, '', '/login');
+        // Showcase slide crossfade + card ambience
+        if (authCard) authCard.classList.toggle('is-register-mode', isRegister);
+        showcaseSlides.forEach(slide => {
+          slide.classList.toggle('is-active', slide.getAttribute('data-showcase') === targetTab);
+        });
+
+        // Directional panel transition (register enters from the right, login from the left)
+        if (!entering.classList.contains('is-active')) {
+          const enterX = isRegister ? 'translateX(56px)' : 'translateX(-56px)';
+          const exitX = isRegister ? 'translateX(-56px)' : 'translateX(56px)';
+
+          // Park both panels at their start positions before flipping classes
+          entering.style.transition = 'none';
+          entering.style.transform = enterX;
+          leaving.style.transition = 'none';
+          leaving.style.transform = exitX;
+          void entering.offsetWidth; // force reflow so the new start position applies
+
+          entering.style.transition = '';
+          leaving.style.transition = '';
+
+          leaving.classList.remove('is-active');
+          entering.classList.add('is-active');
+          entering.style.transform = '';
         }
+
+        // Morph the card height to fit the incoming form
+        if (viewport) {
+          const fromHeight = leaving && leaving.offsetHeight > 0 ? leaving.offsetHeight : entering.offsetHeight;
+          viewport.style.height = fromHeight + 'px';
+          void viewport.offsetWidth;
+          viewport.style.height = entering.offsetHeight + 'px';
+        }
+
+        window.history.replaceState(null, '', isRegister ? '/register' : '/login');
       }
 
       // Initial tab detection: check URL or section data attribute
       const initialTab = authSection.getAttribute('data-initial-tab') ||
         (window.location.pathname.includes('register') ? 'register' : 'login');
-      if (initialTab === 'register') {
-        switchAuthTab('register');
+
+      // On first paint, match classes to the initial tab without animating
+      {
+        const startPanel = activePanelFor(initialTab);
+        const startIsRegister = initialTab === 'register';
+        loginPanel.classList.toggle('is-active', !startIsRegister);
+        registerPanel.classList.toggle('is-active', startIsRegister);
+        tabBtns.forEach(btn => {
+          const isTarget = btn.getAttribute('data-tab') === initialTab;
+          btn.classList.toggle('is-active', isTarget);
+          btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        });
+        tabNav.classList.toggle('is-register', startIsRegister);
+        if (authCard) authCard.classList.toggle('is-register-mode', startIsRegister);
+        showcaseSlides.forEach(slide => {
+          slide.classList.toggle('is-active', slide.getAttribute('data-showcase') === initialTab);
+        });
+        syncViewportHeight(initialTab);
       }
+      if (initialTab === 'register') {
+        window.history.replaceState(null, '', '/register');
+      }
+
+      // Re-measure the active panel when layout shifts (fonts, responsive, resize)
+      window.addEventListener('resize', () => syncViewportHeight(initialTab === 'register' ? 'register' : (tabNav && tabNav.classList.contains('is-register') ? 'register' : 'login')));
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          const current = tabNav && tabNav.classList.contains('is-register') ? 'register' : 'login';
+          syncViewportHeight(current);
+        });
+      }
+      window.addEventListener('load', () => {
+        const current = tabNav && tabNav.classList.contains('is-register') ? 'register' : 'login';
+        syncViewportHeight(current);
+      });
 
       // Tab button clicks
       tabBtns.forEach(btn => {
